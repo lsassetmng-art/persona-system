@@ -1,0 +1,14 @@
+{
+  "version": "2.1.0",
+  "status": "STRUCTURALLY_SEALED",
+  "structure": "fixed",
+  "behavior": "v1.0.0",
+  "persona_math": "v1.0.0",
+  "simulation": "v1.0.0",
+  "erp_dependency": "v1.0.0",
+  "snapshot_crypto": "v1.0.0",
+  "deterministic": true,
+  "replay_safe": true,
+  "fail_closed": true,
+  "root_hash": "3a53144dbcdbc6a20b9c28af770958a3ee1841b1193f3f9c997ecc8d49cfe71d"
+}

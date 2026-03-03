@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lsam://schemas/interface_event/v2",
+  "title": "Interface Event Envelope (v2)",
+  "allOf": [
+    { "$ref": "./00_base_event.schema.json" }
+  ],
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_os",
+    "target_os",
+    "signature"
+  ],
+  "properties": {
+    "source_os": { "type": "string", "minLength": 1 },
+    "target_os": { "type": "string", "minLength": 1 },
+    "signature": { "type": "string", "minLength": 16 }
+  }
+}

@@ -1,0 +1,1 @@
+3a53144dbcdbc6a20b9c28af770958a3ee1841b1193f3f9c997ecc8d49cfe71d  /data/data/com.termux/files/home/civilization-design/dist/CIVILIZATION_OS_CANONICAL_FULL_v2.1.0.md

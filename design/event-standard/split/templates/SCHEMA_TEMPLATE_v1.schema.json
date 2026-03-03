@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lsam://event/<EVENT_TYPE>/v1",
+  "title": "<EVENT_TYPE> payload schema v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "example_required_field"
+  ],
+  "properties": {
+    "example_required_field": { "type": "string" },
+    "example_optional_field": { "type": "integer" }
+  }
+}
