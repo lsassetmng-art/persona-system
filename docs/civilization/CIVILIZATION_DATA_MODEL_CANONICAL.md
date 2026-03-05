@@ -1,39 +1,170 @@
-# Civilization Data Model (Canonical)
+# ============================================================
+# CIVILIZATION DATA MODEL (CANONICAL)
+# ============================================================
 status: canonical
-scope: civilization.data_model
 owner: Boss
 prepared_by: Zero
+version: 1.0
 
-## Entities
-- universe
-- civilization
-- nation (optional: civilization == nation in simple mode)
-- organization (company, school, club, military unit)
-- market (fx, commodity, labor)
-- resource (energy, food, minerals, strategic materials)
-- technology (tree + adoption)
-- policy (laws, sanctions, treaties)
-- event (the only mutation driver)
-- tick (time step record)
-- metric (aggregated numbers)
-- character (key persons; lore + governance actors)
+Purpose:
+Civilization の主要データ構造を定義する。
 
-## Identifiers
-- uuid for internal entities
-- stable string codes for lore-facing identifiers (e.g., civ_code: "NOVA")
+------------------------------------------------------------
+WORLD MODEL
+------------------------------------------------------------
 
-## Event Envelope (minimum)
-- event_id (uuid)
-- event_type (string)
-- event_version (int)
-- occurred_at (world time)
-- created_at (system time)
-- source (system/admin)
-- severity (1..100)
-- payload (json)
-- trace (run_id, tick_id)
+world
 
-## Invariants
-- Event immutability (append-only)
-- Derived facts are reproducible from event log + checkpoints
-- No hard delete (tombstone/expired instead)
+fields:
+
+world_id
+world_name
+created_at
+simulation_tick
+world_state
+
+Rules:
+
+world state mutated only by Apply Engine.
+
+------------------------------------------------------------
+NATION MODEL
+------------------------------------------------------------
+
+nation
+
+fields:
+
+nation_id
+nation_name
+civilization_id
+currency_code
+population
+stability_index
+
+Each nation has its own currency.
+
+------------------------------------------------------------
+ORGANIZATION MODEL
+------------------------------------------------------------
+
+organization
+
+types:
+
+government
+corporation
+school
+club
+team
+
+fields:
+
+organization_id
+nation_id
+type
+influence_index
+members
+
+------------------------------------------------------------
+PERSONA AFFILIATION
+------------------------------------------------------------
+
+persona_affiliation
+
+fields:
+
+persona_id
+nation_id
+organization_id
+role
+status
+
+Source of truth remains PersonaOS snapshot.
+
+Civilization holds read projection.
+
+------------------------------------------------------------
+POPULATION STATE
+------------------------------------------------------------
+
+population_state
+
+fields:
+
+population_total
+age_distribution
+labor_force
+migration_index
+
+Updated by Population Engine.
+
+------------------------------------------------------------
+ECONOMY STATE
+------------------------------------------------------------
+
+economy_state
+
+fields:
+
+gdp_index
+inflation_index
+employment_index
+trade_volume
+
+Updated by Economic Engine.
+
+------------------------------------------------------------
+WAR STATE
+------------------------------------------------------------
+
+war_state
+
+fields:
+
+conflict_id
+nation_a
+nation_b
+phase
+tension_index
+
+Managed by War Escalation Model.
+
+------------------------------------------------------------
+EVENT STORE
+------------------------------------------------------------
+
+event_store
+
+fields:
+
+event_id
+event_type
+event_version
+payload
+schema_hash
+occurred_at
+
+Rules:
+
+events are immutable.
+
+------------------------------------------------------------
+CHECKPOINT
+------------------------------------------------------------
+
+checkpoint
+
+fields:
+
+checkpoint_id
+world_id
+simulation_tick
+state_hash
+created_at
+
+Used for replay and recovery.
+
+------------------------------------------------------------
+END
+------------------------------------------------------------

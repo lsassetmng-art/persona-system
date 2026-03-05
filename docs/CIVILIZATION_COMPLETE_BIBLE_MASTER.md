@@ -1,8 +1,16 @@
+# ==============================================================
+# CIVILIZATION COMPLETE BIBLE
+# Artificial Civilization Canon
+# ==============================================================
+# This file is a non-destructive merged bible.
+# It does NOT modify existing documents.
+# It only aggregates them for reading/export.
+# ==============================================================
 
-==================================================
-/data/data/com.termux/files/home/persona-system/design/dist/architecture/000_FULL_00_96_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/design/dist/architecture/000_FULL_00_96_CANONICAL.md
+------------------------------------------------------------
 # Civilization Platform Canonical (00-96 FULL MERGE)
 
 Generated at: 2026-03-01 05:55:30
@@ -10406,10 +10414,10 @@ last_updated: 2026-02-28
 4) 最初の Actor 発行（policy/whitelist/keys）
 5) ERP受け口（ingest）実装
 
-==================================================
-/data/data/com.termux/files/home/persona-system/design/CIVILIZATION_FULL_INTEGRATED_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/design/CIVILIZATION_FULL_INTEGRATED_CANONICAL.md
+------------------------------------------------------------
 
 # CIVILIZATION FULL INTEGRATED CANONICAL
 Version: v2.0.0
@@ -10586,10 +10594,10 @@ No structural change allowed if consistency breaks.
 END OF FULL INTEGRATED CANONICAL
 ============================================================
 
-==================================================
-/data/data/com.termux/files/home/persona-system/design/architecture/foundation/HARDENING-PLAN.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/design/architecture/foundation/HARDENING-PLAN.md
+------------------------------------------------------------
 # ============================================================
 # Civilization OS
 # Foundation Hardening Plan
@@ -10677,10 +10685,10 @@ Hardening Phase Complete When:
 # END
 ------------------------------------------------------------
 
-==================================================
-/data/data/com.termux/files/home/persona-system/design/architecture/foundation/FAILURE-MATRIX.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/design/architecture/foundation/FAILURE-MATRIX.md
+------------------------------------------------------------
 # ============================================================
 # Civilization OS
 # Failure Matrix
@@ -10712,10 +10720,10 @@ Hardening Phase Complete When:
 # END
 ------------------------------------------------------------
 
-==================================================
-/data/data/com.termux/files/home/persona-system/design/architecture/foundation/RECOVERY-GUIDE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/design/architecture/foundation/RECOVERY-GUIDE.md
+------------------------------------------------------------
 # ============================================================
 # Civilization OS
 # Recovery Guide
@@ -10769,10 +10777,446 @@ WHERE control_key='dispatch_enabled';
 # END
 ------------------------------------------------------------
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_OS_BIBLE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_BIBLE.md
+------------------------------------------------------------
+# CIVILIZATION BIBLE
+Civilization OS Canonical Design
+
+This document is the unified reference of the Civilization architecture.
+
+All other design documents derive from this bible.
+
+---
+
+# 1 Civilization Overview
+
+Civilization OS is an event-driven operating system designed to manage
+multiple worlds and applications.
+
+World examples
+
+- PersonaOS
+- ERP (Business)
+- Life
+- Streaming
+- Game
+- Learning
+- Social
+
+Each world produces events that flow through a unified runtime.
+
+---
+
+# 2 Civilization Core Principles
+
+1 Fail Closed
+
+The system must stop on invalid state rather than continue in unsafe mode.
+
+2 Event Driven
+
+All system mutations occur through events.
+
+3 Immutable History
+
+Events are append-only and form the historical record.
+
+4 Deterministic Processing
+
+Given the same event sequence, the system must produce the same state.
+
+---
+
+# 3 Layer Architecture
+
+Civilization follows a strict layered model.
+
+Layer 0
+Constitution
+
+Layer 1
+Architecture
+
+Layer 2
+Event System
+
+Layer 3
+Runtime
+
+Layer 4
+Operations
+
+Layer 5
+Applications
+
+Lower layers must never depend on higher layers.
+
+---
+
+# 4 Domain Architecture
+
+Civilization is composed of independent domains.
+
+Domains
+
+ERP
+PersonaOS
+Life
+Streaming
+Game
+Learning
+Social
+
+Domains communicate only through events.
+
+Direct cross-domain mutation is forbidden.
+
+---
+
+# 5 System Context
+
+Applications
+↓
+Edge Functions
+↓
+Database
+↓
+World Domains
+
+Applications never mutate state directly.
+
+All changes occur through event pipelines.
+
+---
+
+# 6 Event System
+
+Events are the fundamental unit of change.
+
+Event structure
+
+event_id
+event_type
+event_version
+payload
+signature
+
+Events must be idempotent.
+
+Duplicate events must not produce duplicate state mutation.
+
+---
+
+# 7 Event Lifecycle
+
+Event Creation
+↓
+Outbox
+↓
+Dispatcher
+↓
+Event Registry
+↓
+Apply Engine
+↓
+Persona State Mutation
+↓
+Snapshot
+
+This pipeline guarantees reliable processing.
+
+---
+
+# 8 Runtime Engine
+
+The runtime executes event pipelines.
+
+Components
+
+Dispatcher
+Apply Engine
+Retry Policy
+Outbox Processor
+
+Responsibilities
+
+Claim events
+Verify signatures
+Validate registry
+Apply mutation
+Record state
+
+---
+
+# 9 Security Model
+
+Security is enforced at the event layer.
+
+Mechanisms
+
+Event signing
+Signature verification
+Trust model
+Key rotation
+
+Invalid signatures immediately terminate processing.
+
+---
+
+# 10 Data Governance
+
+Data integrity rules.
+
+Schema evolution must be backward compatible.
+
+Historical events must never be modified.
+
+Retention policies define how long events remain stored.
+
+---
+
+# 11 Operations
+
+Operational reliability layer.
+
+Components
+
+Observability
+Incident response
+Deployment rules
+Failure handling
+Recovery procedures
+
+Monitoring must include
+
+event_id
+stage
+latency
+result
+
+---
+
+# 12 Documentation
+
+Civilization documentation structure
+
+constitution
+architecture
+event
+runtime
+security
+data
+operations
+docs
+
+The Civilization Bible is the canonical summary.
+
+Detailed documents extend the bible but must not contradict it.
+
+---
+
+# 13 System Philosophy
+
+Civilization OS is designed as a long-lived system.
+
+Design goals
+
+determinism
+auditability
+scalability
+resilience
+
+Every design decision must respect these principles.
+
+---
+
+# End of Civilization Bible
+
+---
+
+# 14 Event Governance
+
+Events are the only allowed mechanism for system mutation.
+
+Rules
+
+1 Events must be append-only.
+2 Events must include version information.
+3 Events must be validated before execution.
+4 Events must be idempotent.
+
+Event Registry
+
+The registry defines which event types are valid
+and which runtime handlers are allowed to process them.
+
+Unauthorized events must be rejected.
+
+---
+
+# 15 Event Compatibility
+
+Events evolve over time.
+
+Compatibility modes
+
+exact_only
+backward_compatible
+transform_required
+
+Transform layers allow older events to be processed by newer runtimes.
+
+---
+
+# 16 Dispatcher Model
+
+The dispatcher is responsible for moving events
+from the outbox to the runtime.
+
+Dispatcher responsibilities
+
+claim events
+verify signatures
+validate registry
+route events to runtime handlers
+apply retry logic
+
+Dispatcher must be stateless.
+
+---
+
+# 17 Retry Strategy
+
+Event execution may fail due to transient errors.
+
+Retry rules
+
+maximum retries
+exponential backoff
+dead-letter termination
+
+Events exceeding retry limits must be marked dead.
+
+---
+
+# 18 Apply Engine
+
+The apply engine performs state mutation.
+
+Responsibilities
+
+validate event contract
+load current state
+apply deterministic mutation
+persist new state
+record execution log
+
+The apply engine must be deterministic.
+
+---
+
+# 19 Snapshot Model
+
+Snapshots represent the current derived state.
+
+Snapshots are derived from events
+and can be reconstructed at any time.
+
+Snapshots must never replace historical events.
+
+Events are the source of truth.
+
+---
+
+# 20 Observability
+
+Operational visibility is mandatory.
+
+All runtime components must produce structured logs.
+
+Required fields
+
+event_id
+stage
+timestamp
+latency
+result
+
+Logs must support distributed tracing.
+
+---
+
+# 21 Incident Response
+
+System failures must follow a defined recovery process.
+
+Incident handling
+
+detect
+contain
+diagnose
+recover
+review
+
+Incidents must produce audit records.
+
+---
+
+# 22 Deployment Model
+
+Deployment order
+
+1 database migrations
+2 event registry updates
+3 runtime updates
+4 dispatcher activation
+
+This prevents runtime incompatibility.
+
+---
+
+# 23 Dependency Principles
+
+Civilization components follow strict dependency rules.
+
+Allowed dependency direction
+
+constitution
+architecture
+event system
+runtime
+operations
+applications
+
+Violation of layer order is an architecture error.
+
+---
+
+# 24 Long Term Design Goals
+
+Civilization OS is designed for long-term operation.
+
+Key goals
+
+deterministic execution
+full auditability
+horizontal scalability
+strong fault isolation
+operational transparency
+
+All future changes must respect these goals.
+
+---
+
+# End of Extended Civilization Bible
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_OS_BIBLE.md
+------------------------------------------------------------
 # ==========================================================
 # CIVILIZATION OS BIBLE
 # Unified Civilization Architecture Canonical Document
@@ -13742,799 +14186,25 @@ Parallel worlds are strictly meta-canon (admin-only).
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_BIBLE.md
-==================================================
 
-# CIVILIZATION BIBLE
-Civilization OS Canonical Design
-
-This document is the unified reference of the Civilization architecture.
-
-All other design documents derive from this bible.
-
----
-
-# 1 Civilization Overview
-
-Civilization OS is an event-driven operating system designed to manage
-multiple worlds and applications.
-
-World examples
-
-- PersonaOS
-- ERP (Business)
-- Life
-- Streaming
-- Game
-- Learning
-- Social
-
-Each world produces events that flow through a unified runtime.
-
----
-
-# 2 Civilization Core Principles
-
-1 Fail Closed
-
-The system must stop on invalid state rather than continue in unsafe mode.
-
-2 Event Driven
-
-All system mutations occur through events.
-
-3 Immutable History
-
-Events are append-only and form the historical record.
-
-4 Deterministic Processing
-
-Given the same event sequence, the system must produce the same state.
-
----
-
-# 3 Layer Architecture
-
-Civilization follows a strict layered model.
-
-Layer 0
-Constitution
-
-Layer 1
-Architecture
-
-Layer 2
-Event System
-
-Layer 3
-Runtime
-
-Layer 4
-Operations
-
-Layer 5
-Applications
-
-Lower layers must never depend on higher layers.
-
----
-
-# 4 Domain Architecture
-
-Civilization is composed of independent domains.
-
-Domains
-
-ERP
-PersonaOS
-Life
-Streaming
-Game
-Learning
-Social
-
-Domains communicate only through events.
-
-Direct cross-domain mutation is forbidden.
-
----
-
-# 5 System Context
-
-Applications
-↓
-Edge Functions
-↓
-Database
-↓
-World Domains
-
-Applications never mutate state directly.
-
-All changes occur through event pipelines.
-
----
-
-# 6 Event System
-
-Events are the fundamental unit of change.
-
-Event structure
-
-event_id
-event_type
-event_version
-payload
-signature
-
-Events must be idempotent.
-
-Duplicate events must not produce duplicate state mutation.
-
----
-
-# 7 Event Lifecycle
-
-Event Creation
-↓
-Outbox
-↓
-Dispatcher
-↓
-Event Registry
-↓
-Apply Engine
-↓
-Persona State Mutation
-↓
-Snapshot
-
-This pipeline guarantees reliable processing.
-
----
-
-# 8 Runtime Engine
-
-The runtime executes event pipelines.
-
-Components
-
-Dispatcher
-Apply Engine
-Retry Policy
-Outbox Processor
-
-Responsibilities
-
-Claim events
-Verify signatures
-Validate registry
-Apply mutation
-Record state
-
----
-
-# 9 Security Model
-
-Security is enforced at the event layer.
-
-Mechanisms
-
-Event signing
-Signature verification
-Trust model
-Key rotation
-
-Invalid signatures immediately terminate processing.
-
----
-
-# 10 Data Governance
-
-Data integrity rules.
-
-Schema evolution must be backward compatible.
-
-Historical events must never be modified.
-
-Retention policies define how long events remain stored.
-
----
-
-# 11 Operations
-
-Operational reliability layer.
-
-Components
-
-Observability
-Incident response
-Deployment rules
-Failure handling
-Recovery procedures
-
-Monitoring must include
-
-event_id
-stage
-latency
-result
-
----
-
-# 12 Documentation
-
-Civilization documentation structure
-
-constitution
-architecture
-event
-runtime
-security
-data
-operations
-docs
-
-The Civilization Bible is the canonical summary.
-
-Detailed documents extend the bible but must not contradict it.
-
----
-
-# 13 System Philosophy
-
-Civilization OS is designed as a long-lived system.
-
-Design goals
-
-determinism
-auditability
-scalability
-resilience
-
-Every design decision must respect these principles.
-
----
-
-# End of Civilization Bible
-
----
-
-# 14 Event Governance
-
-Events are the only allowed mechanism for system mutation.
-
-Rules
-
-1 Events must be append-only.
-2 Events must include version information.
-3 Events must be validated before execution.
-4 Events must be idempotent.
-
-Event Registry
-
-The registry defines which event types are valid
-and which runtime handlers are allowed to process them.
-
-Unauthorized events must be rejected.
-
----
-
-# 15 Event Compatibility
-
-Events evolve over time.
-
-Compatibility modes
-
-exact_only
-backward_compatible
-transform_required
-
-Transform layers allow older events to be processed by newer runtimes.
-
----
-
-# 16 Dispatcher Model
-
-The dispatcher is responsible for moving events
-from the outbox to the runtime.
-
-Dispatcher responsibilities
-
-claim events
-verify signatures
-validate registry
-route events to runtime handlers
-apply retry logic
-
-Dispatcher must be stateless.
-
----
-
-# 17 Retry Strategy
-
-Event execution may fail due to transient errors.
-
-Retry rules
-
-maximum retries
-exponential backoff
-dead-letter termination
-
-Events exceeding retry limits must be marked dead.
-
----
-
-# 18 Apply Engine
-
-The apply engine performs state mutation.
-
-Responsibilities
-
-validate event contract
-load current state
-apply deterministic mutation
-persist new state
-record execution log
-
-The apply engine must be deterministic.
-
----
-
-# 19 Snapshot Model
-
-Snapshots represent the current derived state.
-
-Snapshots are derived from events
-and can be reconstructed at any time.
-
-Snapshots must never replace historical events.
-
-Events are the source of truth.
-
----
-
-# 20 Observability
-
-Operational visibility is mandatory.
-
-All runtime components must produce structured logs.
-
-Required fields
-
-event_id
-stage
-timestamp
-latency
-result
-
-Logs must support distributed tracing.
-
----
-
-# 21 Incident Response
-
-System failures must follow a defined recovery process.
-
-Incident handling
-
-detect
-contain
-diagnose
-recover
-review
-
-Incidents must produce audit records.
-
----
-
-# 22 Deployment Model
-
-Deployment order
-
-1 database migrations
-2 event registry updates
-3 runtime updates
-4 dispatcher activation
-
-This prevents runtime incompatibility.
-
----
-
-# 23 Dependency Principles
-
-Civilization components follow strict dependency rules.
-
-Allowed dependency direction
-
-constitution
-architecture
-event system
-runtime
-operations
-applications
-
-Violation of layer order is an architecture error.
-
----
-
-# 24 Long Term Design Goals
-
-Civilization OS is designed for long-term operation.
-
-Key goals
-
-deterministic execution
-full auditability
-horizontal scalability
-strong fault isolation
-operational transparency
-
-All future changes must respect these goals.
-
----
-
-# End of Extended Civilization Bible
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_MASTER_INDEX.md
-==================================================
-
-# ============================================================
-# CIVILIZATION MASTER INDEX
-# CivilizationOS Documentation Index
-# ============================================================
-
-status: canonical
-owner: Boss
-prepared_by: Zero
-
-
-# ============================================================
-# 1. CORE DOCUMENT
-# ============================================================
-
-CIVILIZATION_OS_BIBLE.md
-
-Unified compiled document containing all architecture
-and system design specifications.
-
-
-# ============================================================
-# 2. CORE ARCHITECTURE
-# ============================================================
-
-civilization/CIVILIZATION_LAYER_ARCHITECTURE.md
-
-Defines overall layer structure of CivilizationOS.
-
-
-civilization/CIVILIZATION_SIMULATION_LAYER_ARCHITECTURE.md
-
-Defines parallel civilization simulation framework.
-
-
-civilization/TRIPLE_CORE_ARCHITECTURE.md
-
-Defines the internal architecture of TRIPLE.
-
-
-civilization/TRIPLE_WORLD_ISOLATION_POLICY.md
-
-Defines isolation rules between parallel worlds.
-
-
-# ============================================================
-# 3. WORLD STRUCTURE
-# ============================================================
-
-civilization/CIVILIZATION_WORLD_MAP_SPEC.md
-
-Defines planetary structure and geography.
-
-
-civilization/CIVILIZATION_TIER1_TOP100.md
-
-Defines major corporations within civilizations.
-
-
-# ============================================================
-# 4. SYSTEM ENGINES
-# ============================================================
-
-civilization/CIVILIZATION_SIMULATION_ENGINE.md
-
-Defines simulation tick engine.
-
-
-civilization/CIVILIZATION_EVENT_SYSTEM.md
-
-Defines event generation and propagation.
-
-
-# ============================================================
-# 5. ECONOMY / POLITICS
-# ============================================================
-
-civilization/CIVILIZATION_ECONOMIC_SYSTEM.md
-
-Defines economic model.
-
-
-civilization/CIVILIZATION_POLITICAL_SYSTEM.md
-
-Defines political structure of civilizations.
-
-
-civilization/CIVILIZATION_WAR_SYSTEM.md
-
-Defines warfare mechanics.
-
-
-# ============================================================
-# 6. PERSONA / SOCIAL SYSTEM
-# ============================================================
-
-PersonaOS integrated personality system.
-
-
-Persona lifecycle
-organizations
-nations
-social structures
-
-
-# ============================================================
-# 7. ADMINISTRATION LAYER
-# ============================================================
-
-Administrator Layer
-
-Controls:
-
-simulation world creation
-parameter management
-observation of TRIPLE evolution
-
-
-# ============================================================
-# 8. DOCUMENT HIERARCHY
-# ============================================================
-
-Civilization Constitution (future)
-        ↓
-Civilization Master Index
-        ↓
-Civilization OS Bible
-        ↓
-Individual Architecture Documents
-
-
-# ============================================================
-# END
-# ============================================================
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/CIVILIZATION_FILE_INDEX.md
-==================================================
-
-# Civilization Design File Index
-
-Purpose
-
-Central index of all Civilization OS design documents.
-
-Root directory
-
-~/persona-system
-
-------------------------------------------------
-CONSTITUTION
-------------------------------------------------
-
-~/persona-system/constitution
-
-CIVILIZATION_CONSTITUTION_CANONICAL.md
-
-Role
-
-Defines the immutable principles of Civilization OS.
-
-------------------------------------------------
-ARCHITECTURE
-------------------------------------------------
-
-~/persona-system/architecture
-
-CIVILIZATION_MASTER_STRUCTURE_CANONICAL.md
-CIVILIZATION_RUNTIME_DIAGRAM.md
-CIVILIZATION_EVENT_MAP.md
-
-Role
-
-Defines global architecture and system relations.
-
-------------------------------------------------
-EVENT SYSTEM
-------------------------------------------------
-
-~/persona-system/event
-
-EVENT_STANDARD_V2_CANONICAL_MERGED.md
-EVENT_FLOW_SPEC_CANONICAL.md
-EVENT_COMPATIBILITY_SPEC.md
-EVENT_TRANSFORM_SPEC.md
-EVENT_IDEMPOTENCY_SPEC.md
-WORLD_EVENT_CATALOG.md
-DOMAIN_EVENT_CATALOG.md
-
-Role
-
-Defines event contracts and event lifecycle.
-
-------------------------------------------------
-RUNTIME
-------------------------------------------------
-
-~/persona-system/runtime
-
-DISPATCHER_RUNTIME_SPEC.md
-APPLY_ENGINE_RUNTIME_SPEC.md
-
-Role
-
-Defines runtime execution logic.
-
-------------------------------------------------
-OPERATIONS
-------------------------------------------------
-
-~/persona-system/operations
-
-FAILURE-MATRIX.md
-HARDENING-PLAN.md
-RECOVERY-GUIDE.md
-OBSERVABILITY_SPEC.md
-
-Role
-
-Defines operational behavior and failure handling.
-
-------------------------------------------------
-SECURITY
-------------------------------------------------
-
-~/persona-system/security
-
-SECURITY_MODEL.md
-KEY_ROTATION_SPEC.md
-
-------------------------------------------------
-DATA
-------------------------------------------------
-
-~/persona-system/data
-
-DATA_MODEL_SPEC.md
-
-------------------------------------------------
-DOCUMENTATION
-------------------------------------------------
-
-~/persona-system/docs
-
-CIVILIZATION_FILE_INDEX.md
-CIVILIZATION_BIBLE.md
-
-------------------------------------------------
-END
-------------------------------------------------
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/DEPENDENCY_GRAPH.md
-==================================================
-
-# Civilization Design Dependency Graph
-
-## Purpose
-
-Shows dependency relations between all major Civilization /
-Persona-System design documents. Helps prevent circular architecture and
-design drift.
-
-------------------------------------------------------------------------
-
-## Dependency Graph
-
-``` mermaid
-flowchart TD
-
-CONSTITUTION[Civilization Constitution]
-
-ARCH[Architecture Layer]
-EVENT[Event System]
-RUNTIME[Runtime System]
-SECURITY[Security Model]
-DATA[Data Model]
-OPS[Operations]
-
-DISPATCHER[Dispatcher Runtime]
-APPLY[Apply Engine]
-
-OUTBOX[Outbox Pattern]
-REGISTRY[Event Registry]
-
-OBS[Observability]
-FAILURE[Failure Matrix]
-
-CONSTITUTION --> ARCH
-
-ARCH --> EVENT
-ARCH --> RUNTIME
-ARCH --> DATA
-ARCH --> SECURITY
-
-EVENT --> REGISTRY
-EVENT --> OUTBOX
-
-RUNTIME --> DISPATCHER
-RUNTIME --> APPLY
-
-SECURITY --> DISPATCHER
-SECURITY --> APPLY
-
-DATA --> APPLY
-
-RUNTIME --> OBS
-OPS --> FAILURE
-```
-
-------------------------------------------------------------------------
-
-## Dependency Principles
-
-1.  Constitution is the highest authority.
-2.  Architecture defines system structure.
-3.  Event System defines event contracts.
-4.  Runtime implements execution logic.
-5.  Operations manages reliability and monitoring.
-
-------------------------------------------------------------------------
-
-## Layer Order Rule
-
-Allowed dependency direction:
-
-Constitution\
-→ Architecture\
-→ Event System\
-→ Runtime\
-→ Operations
-
-Lower layers must never depend on higher layers.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/ADMIN_LAYER_SPEC.md
-==================================================
-
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/ADMIN_LAYER_SPEC.md
+------------------------------------------------------------
 # Administrator Layer
 External administrators oversee the entire system.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/ASIC_COMPANY_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/ASIC_COMPANY_SPEC.md
+------------------------------------------------------------
 # ASIC Company
 AI System Integrated Company.
 Public technology corporation and hidden civilization infrastructure manager.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ADMIN_CONTROL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ADMIN_CONTROL.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION ADMIN CONTROL
 # ============================================================
@@ -14552,10 +14222,10 @@ system reset
 Administrators do not control daily events,
 only structural corrections.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_AI_GOVERNANCE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_AI_GOVERNANCE.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION AI GOVERNANCE
 # ============================================================
@@ -14576,10 +14246,10 @@ monitor civilization development
 apply minimal corrections
 prevent total collapse
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ARCHETYPES.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ARCHETYPES.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION ARCHETYPES
 # Seven Civilization Identity Model
@@ -14770,10 +14440,10 @@ This balance maintains global stability.
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ASIC_INTERNAL_ORG.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ASIC_INTERNAL_ORG.md
+------------------------------------------------------------
 # ASIC Internal Organization (Canonical)
 status: canonical
 scope: civilization.asic.org
@@ -14797,10 +14467,10 @@ prepared_by: Zero
 ## TRIPLE
 CEO / final integrator of outputs (publicly corporate, functionally stabilization).
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_AURELIA_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_AURELIA_SPEC.md
+------------------------------------------------------------
 # AURELIA FEDERATION (COLLAPSED)
 
 type: ideological federation
@@ -14812,10 +14482,10 @@ population: ~170 million (before collapse)
 history:
 Collapsed during the Aurelia Civil War.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CHARACTER_DATABASE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CHARACTER_DATABASE.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION CHARACTER DATABASE
 # Major Historical Figures
@@ -14937,10 +14607,10 @@ Observation case for political instability.
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CHECKPOINT_AND_REPLAY.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CHECKPOINT_AND_REPLAY.md
+------------------------------------------------------------
 # Checkpoint and Replay
 status: canonical
 scope: civilization.recovery
@@ -14961,17 +14631,17 @@ prepared_by: Zero
   - generate divergence report
   - require admin decision (choose branch or reconcile)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CLASS_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CLASS_SYSTEM.md
+------------------------------------------------------------
 # Class System
 Social mobility possible through education and economic success.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_COMPANY_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_COMPANY_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION COMPANY SYSTEM
 # ============================================================
@@ -15006,10 +14676,10 @@ war production
 
 Corporate competition drives economic growth.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORE_SIMULATION_RULES.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORE_SIMULATION_RULES.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION CORE SIMULATION RULES
 # Deterministic Rulebook for CivilizationOS
@@ -15342,17 +15012,17 @@ Audit:
 # END
 # ============================================================
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATE_FAILURE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATE_FAILURE_SYSTEM.md
+------------------------------------------------------------
 # Corporate Failure System
 Major corporations may collapse causing economic ripple effects.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATION_ENGINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATION_ENGINE.md
+------------------------------------------------------------
 # Corporation Engine
 status: canonical
 scope: civilization.corporations
@@ -15376,17 +15046,17 @@ prepared_by: Zero
 - Public: IT megacorp
 - Hidden: civilization infrastructure coordinator
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORPORATION_SYSTEM.md
+------------------------------------------------------------
 # Corporation System
 Corporate structure divided into four tiers controlling global production and services.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORP_REGULATION.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CORP_REGULATION.md
+------------------------------------------------------------
 # Corporate Regulation Framework
 status: canonical
 scope: civilization.corp_regulation
@@ -15403,31 +15073,31 @@ prepared_by: Zero
 - audit_trigger_threshold
 - nationalization_option (rare; political cost)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CREATION_MYTH.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CREATION_MYTH.md
+------------------------------------------------------------
 # Creation Myth
 Civilizations developed origin stories explaining the beginning of the world and society.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CRIME_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CRIME_SYSTEM.md
+------------------------------------------------------------
 # Crime System
 Criminal networks and underground economies exist in all civilizations.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CULTURE_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CULTURE_MODEL.md
+------------------------------------------------------------
 # Culture Model
 Cultures differ across civilizations based on history, belief and economic structures.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CULTURE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CULTURE_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION CULTURE SYSTEM
 # ============================================================
@@ -15449,18 +15119,18 @@ social cohesion
 political stability
 identity
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CURRENCY_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_CURRENCY_SYSTEM.md
+------------------------------------------------------------
 # Currency System
 Each civilization maintains its own currency.
 Exchange rates fluctuate through global market dynamics.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DATA_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DATA_MODEL.md
+------------------------------------------------------------
 # Civilization Data Model
 Defines core data entities:
 
@@ -15472,10 +15142,10 @@ event
 resource
 technology
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DATA_MODEL_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DATA_MODEL_CANONICAL.md
+------------------------------------------------------------
 # Civilization Data Model (Canonical)
 status: canonical
 scope: civilization.data_model
@@ -15516,10 +15186,10 @@ prepared_by: Zero
 - Derived facts are reproducible from event log + checkpoints
 - No hard delete (tombstone/expired instead)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DESIGN_PRINCIPLES.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DESIGN_PRINCIPLES.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION DESIGN PRINCIPLES
 # CIVILIZATION OS / World Simulation - Design Philosophy
@@ -15659,10 +15329,10 @@ Design is complete when:
 - Complete bible can be rebuilt deterministically from repo files
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMACY_ENGINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMACY_ENGINE.md
+------------------------------------------------------------
 # Diplomacy Engine
 status: canonical
 scope: civilization.diplomacy
@@ -15684,10 +15354,10 @@ prepared_by: Zero
 - sanctions recommendations
 - alliance shifts
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMACY_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMACY_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION DIPLOMACY SYSTEM
 # ============================================================
@@ -15709,10 +15379,10 @@ trade
 war probability
 economic stability
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION DIPLOMATIC RELATIONS MATRIX
 # ============================================================
@@ -15803,10 +15473,10 @@ war
 alliances
 sanctions
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DISASTER_ENGINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DISASTER_ENGINE.md
+------------------------------------------------------------
 # Disaster Engine
 status: canonical
 scope: civilization.disaster
@@ -15828,17 +15498,17 @@ prepared_by: Zero
 ## Recovery
 - reconstruction investment increases stability after a delay
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DISASTER_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DISASTER_SYSTEM.md
+------------------------------------------------------------
 # Disaster System
 Natural disasters such as earthquakes, floods, and pandemics affect populations and infrastructure.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ECONOMIC_NETWORK.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ECONOMIC_NETWORK.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION ECONOMIC NETWORK
 # ============================================================
@@ -15894,10 +15564,10 @@ Principle
 No civilization can fully dominate economically.
 Mutual dependency maintains balance.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ECONOMY_ENGINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ECONOMY_ENGINE.md
+------------------------------------------------------------
 # Economy Engine
 status: canonical
 scope: civilization.economy
@@ -15923,31 +15593,31 @@ prepared_by: Zero
   - recession + sanctions + war + supply_chain_risk
 - Tier1 collapses cause global shock events.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EDUCATION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EDUCATION_SYSTEM.md
+------------------------------------------------------------
 # Education System
 Education divided into basic education, professional training and advanced institutions.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ELECTION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ELECTION_SYSTEM.md
+------------------------------------------------------------
 # Election System
 Democratic states conduct elections that can shift policy and alliances.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ENERGY_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ENERGY_SYSTEM.md
+------------------------------------------------------------
 # Energy System
 Energy production systems include fossil fuels, nuclear, and renewables.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_SYSTEM.md
+------------------------------------------------------------
 # Civilization Event System
 status: canonical
 scope: civilization.event_system
@@ -15984,10 +15654,10 @@ Stable sort key:
   - tick_summary
   - conflict_report (optional)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_TAXONOMY.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_TAXONOMY.md
+------------------------------------------------------------
 # Civilization Event Taxonomy
 status: canonical
 scope: civilization.events
@@ -16056,17 +15726,17 @@ For violence-related events:
 - no procedural “how-to” details
 - only abstract outcomes and categories
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FOOD_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FOOD_SYSTEM.md
+------------------------------------------------------------
 # Food System
 Agricultural output determines population sustainability.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FULL_SPECIFICATION_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FULL_SPECIFICATION_CANONICAL.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION FULL SPECIFICATION
 # Canonical Design Document
@@ -16368,10 +16038,10 @@ Personas
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FX_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_FX_MODEL.md
+------------------------------------------------------------
 # FX Model (Civilization)
 status: canonical
 scope: civilization.fx
@@ -16392,17 +16062,17 @@ Each civilization has its own currency (civ_currency).
 currency_strength_index (0..100) per civilization
 FX rates are derived and recorded per tick.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GEOGRAPHY_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GEOGRAPHY_MODEL.md
+------------------------------------------------------------
 # Civilization Geography
 Three major continents connected by central ocean trade routes.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_BALANCE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_BALANCE.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION GLOBAL BALANCE
 # ============================================================
@@ -16422,17 +16092,17 @@ No single civilization can dominate all factors simultaneously.
 
 Global balance prevents permanent hegemony.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_MARKET.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_MARKET.md
+------------------------------------------------------------
 # Global Market
 Global economic center located in Nova Trade Federation.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_TIMELINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_TIMELINE.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION GLOBAL TIMELINE
 # Canonical History of the World
@@ -16554,10 +16224,10 @@ Seven civilizations remain.
 Global balance maintained through economic and political equilibrium.
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_TREATY_FRAMEWORK.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GLOBAL_TREATY_FRAMEWORK.md
+------------------------------------------------------------
 # Global Treaty Framework (UN-like)
 status: canonical
 scope: civilization.treaties
@@ -16579,10 +16249,10 @@ prepared_by: Zero
 ## Treaty Lifecycle
 proposal -> negotiation -> ratification -> activation -> expiry/renewal
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GRADIA_GOVERNMENT.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GRADIA_GOVERNMENT.md
+------------------------------------------------------------
 # Gradia Government (Deep Spec)
 status: canonical
 scope: civilization.government.gradia
@@ -16603,10 +16273,10 @@ Military alliance state.
 ## Risk
 - hardline factions may escalate conflicts
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GRADIA_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GRADIA_SPEC.md
+------------------------------------------------------------
 # GRADIA MILITARY ALLIANCE
 
 type: military alliance state
@@ -16618,17 +16288,17 @@ population: ~160 million
 notes:
 Strongest military civilization.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HEALTHCARE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HEALTHCARE_SYSTEM.md
+------------------------------------------------------------
 # Healthcare System
 Healthcare systems impact life expectancy and population resilience.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HELIOS_GOVERNMENT.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HELIOS_GOVERNMENT.md
+------------------------------------------------------------
 # Helios Government (Deep Spec)
 status: canonical
 scope: civilization.government.helios
@@ -16647,10 +16317,10 @@ Parliamentary democracy (post-monarchy).
 - rumor-driven agitation (Rin archetype)
 - youth movements can trigger fast legitimacy shifts
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HELIOS_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HELIOS_SPEC.md
+------------------------------------------------------------
 # HELIOS DEMOCRATIC KINGDOM
 
 type: constitutional monarchy → democratic transition
@@ -16662,10 +16332,10 @@ population: ~150 million
 history:
 Rin incident triggered monarchy collapse.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HISTORY_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HISTORY_CANONICAL.md
+------------------------------------------------------------
 # Civilization History (Canonical)
 status: canonical
 scope: civilization.history
@@ -16695,17 +16365,17 @@ prepared_by: Zero
   - a youth-spread rumor about planned oppression
   - youth declaration -> agitation -> major crisis -> monarchy collapse
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HISTORY_GLOBAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_HISTORY_GLOBAL.md
+------------------------------------------------------------
 # Global History
 Major events shaped the current geopolitical world including disasters, wars and political revolutions.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INDEX_CANONICAL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INDEX_CANONICAL.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION DESIGN INDEX (Canonical)
 # ============================================================
@@ -16788,10 +16458,10 @@ prepared_by: Zero
 ## Simulation Layer Policies
 - TRIPLE_WORLD_ISOLATION_POLICY.md
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INFLATION_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INFLATION_MODEL.md
+------------------------------------------------------------
 # Inflation Model
 status: canonical
 scope: civilization.inflation
@@ -16808,17 +16478,17 @@ prepared_by: Zero
 inflation_rate (per tick)
 inflation_spike events when thresholds exceeded.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INFORMATION_WARFARE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_INFORMATION_WARFARE.md
+------------------------------------------------------------
 # Information Warfare
 Disinformation and propaganda campaigns influence geopolitical conflicts.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LAW_AND_CRIME_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LAW_AND_CRIME_SYSTEM.md
+------------------------------------------------------------
 # Law & Crime System (Abstract)
 status: canonical
 scope: civilization.law_crime
@@ -16837,17 +16507,17 @@ prepared_by: Zero
   - society.crime_spike events
   - corruption_pressure on institutions
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LAW_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LAW_SYSTEM.md
+------------------------------------------------------------
 # Law System
 Legal frameworks regulate civil behavior and corporate activity.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LIFE_SUPPORT_SYSTEMS.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_LIFE_SUPPORT_SYSTEMS.md
+------------------------------------------------------------
 # Life Support Systems (Macro)
 status: canonical
 scope: civilization.life_support
@@ -16869,10 +16539,10 @@ prepared_by: Zero
 These feed into:
 population growth/decline, stability, migration.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MEDIA_AND_INFO_OPS.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MEDIA_AND_INFO_OPS.md
+------------------------------------------------------------
 # Media & Information Operations
 status: canonical
 scope: civilization.media
@@ -16891,17 +16561,17 @@ No procedural instructions for harm.
 ## Archetype
 Rin Event: rumor -> youth declaration -> agitation -> large political crisis.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MEDIA_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MEDIA_SYSTEM.md
+------------------------------------------------------------
 # Media System
 Media influences public opinion and political stability.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_METRICS_AND_DASHBOARDS.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_METRICS_AND_DASHBOARDS.md
+------------------------------------------------------------
 # Metrics and Dashboards
 status: canonical
 scope: civilization.metrics
@@ -16931,10 +16601,10 @@ prepared_by: Zero
 - annotate major events
 - highlight gate status (simulation_enabled, domain gates)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MIGRATION_AND_REFUGEE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MIGRATION_AND_REFUGEE_SYSTEM.md
+------------------------------------------------------------
 # Migration & Refugee System
 status: canonical
 scope: civilization.migration
@@ -16955,24 +16625,24 @@ prepared_by: Zero
 - labor market shifts
 - stability impact
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MIGRATION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MIGRATION_SYSTEM.md
+------------------------------------------------------------
 # Migration System
 Population movement between nations due to war, economy or disasters.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MILITARY_STRUCTURE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MILITARY_STRUCTURE.md
+------------------------------------------------------------
 # Military Structure
 Each civilization maintains armed forces with different doctrines.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MONETARY_POLICY.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MONETARY_POLICY.md
+------------------------------------------------------------
 # Monetary Policy (Civilization)
 status: canonical
 scope: civilization.monetary_policy
@@ -16989,10 +16659,10 @@ prepared_by: Zero
 - employment stability
 - currency stability (Nova prioritizes this)
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MULTIVERSE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MULTIVERSE_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION MULTIVERSE SYSTEM
 # ============================================================
@@ -17011,10 +16681,10 @@ migration
 
 Multiverse structure enables large-scale civilization experiments.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MYTHOLOGY.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MYTHOLOGY.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION MYTHOLOGY
 # Mythological Foundations of CivilizationOS
@@ -17262,10 +16932,10 @@ all civilizations ultimately share the same origin myth.
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MYTH_RESERVED.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_MYTH_RESERVED.md
+------------------------------------------------------------
 # Civilization Myth (Reserved)
 status: reserved
 scope: civilization.myth
@@ -17279,10 +16949,10 @@ Constraints:
 - must align with: 7 civilizations, key disasters/wars/revolution archetypes
 - must not reveal: external administrators / true creation protocol
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_NOVA_GOVERNMENT.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_NOVA_GOVERNMENT.md
+------------------------------------------------------------
 # Nova Government (Deep Spec)
 status: canonical
 scope: civilization.government.nova
@@ -17302,10 +16972,10 @@ Commercial federation with corporate senate.
 - global trade dominance
 - treaty network
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_NOVA_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_NOVA_SPEC.md
+------------------------------------------------------------
 # NOVA TRADE FEDERATION
 
 type: commercial federation
@@ -17317,10 +16987,10 @@ population: ~200 million
 notes:
 Global financial center of the world economy.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_OPERATIONS_RUNBOOK.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_OPERATIONS_RUNBOOK.md
+------------------------------------------------------------
 # Civilization Operations Runbook
 status: canonical
 scope: civilization.ops
@@ -17342,10 +17012,10 @@ prepared_by: Zero
 - classify: divergence / data corruption / gate misconfig
 - always produce: incident report + run_id + tick_id range
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ORPHEUS_GOVERNMENT.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ORPHEUS_GOVERNMENT.md
+------------------------------------------------------------
 # Orpheus Government (Deep Spec)
 status: canonical
 scope: civilization.government.orpheus
@@ -17366,10 +17036,10 @@ Council democracy.
 ## Risk
 - cultural schisms can cause internal unrest
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ORPHEUS_SPEC.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ORPHEUS_SPEC.md
+------------------------------------------------------------
 # ORPHEUS CULTURAL REPUBLIC
 
 type: cultural republic
@@ -17381,10 +17051,10 @@ population: ~120 million
 notes:
 Center of arts and philosophy.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_OS_BIBLE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_OS_BIBLE.md
+------------------------------------------------------------
 # ===========================================================
 # CIVILIZATION OS BIBLE
 # Integrated Canonical Design Document
@@ -22557,17 +22227,17 @@ Parallel worlds are strictly meta-canon (admin-only).
 
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POLITICAL_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POLITICAL_SYSTEM.md
+------------------------------------------------------------
 # Political Systems
 Civilizations maintain independent political systems ranging from democracy to military alliances.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POLITICS_ENGINE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POLITICS_ENGINE.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION POLITICS ENGINE
 # ============================================================
@@ -22595,10 +22265,10 @@ reforms
 revolutions
 regime change
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POPULATION_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POPULATION_MODEL.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION POPULATION MODEL
 # ============================================================
@@ -22632,17 +22302,17 @@ labor supply
 military strength
 economic output
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POWER_BALANCE.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_POWER_BALANCE.md
+------------------------------------------------------------
 # Global Power Balance
 Military, economic and cultural power determine geopolitical influence.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_PRE_TRIPLE_HISTORY.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_PRE_TRIPLE_HISTORY.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION PRE-TRIPLE HISTORY
 # Historical Timeline Before TRIPLE Era
@@ -22745,17 +22415,17 @@ and the beginning of the Civilization Era timeline.
 # ============================================================
 
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RELIGION_MODEL.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RELIGION_MODEL.md
+------------------------------------------------------------
 # Religion Model
 Each civilization has distinct belief systems explaining existence and morality.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RELIGION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RELIGION_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION RELIGION SYSTEM
 # ============================================================
@@ -22776,10 +22446,10 @@ culture
 politics
 social stability
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_DISTRIBUTION.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_DISTRIBUTION.md
+------------------------------------------------------------
 # Resource Distribution (Abstract Canon)
 status: canonical
 scope: civilization.resources.distribution
@@ -22800,10 +22470,10 @@ prepared_by: Zero
 - Orpheus: cultural capital (soft power)
 - Stateless: black market access, volatile supplies
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_MAP.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_MAP.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION RESOURCE MAP
 # ============================================================
@@ -22857,10 +22527,10 @@ trade dependency
 conflict
 migration
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RESOURCE_SYSTEM.md
+------------------------------------------------------------
 # ============================================================
 # CIVILIZATION RESOURCE SYSTEM
 # ============================================================
@@ -22890,2003 +22560,17 @@ economic crisis
 conflict
 migration
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_REVOLUTION_SYSTEM.md
-==================================================
 
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_REVOLUTION_SYSTEM.md
+------------------------------------------------------------
 # Revolution System
 Political instability may lead to coups, revolutions, or regime change.
 
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SANCTIONS_PLAYBOOK.md
-==================================================
-
-# Sanctions Playbook (Abstract)
-status: canonical
-scope: civilization.sanctions.playbook
-owner: Boss
-prepared_by: Zero
-
-## Sanction Types
-- financial restrictions
-- trade restrictions
-- tech export limits
-- logistics embargo (high impact)
-
-## Intended Effects
-- reduce target growth
-- increase internal pressure
-- force negotiation
-
-## Safeguards
-- humanitarian exceptions (corridors)
-- expiration or review windows
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SANCTIONS_SYSTEM.md
-==================================================
-
-# Sanctions System
-Economic sanctions used as non-military pressure between civilizations.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SECURITY_AND_GOVERNANCE.md
-==================================================
-
-# Security & Governance (Civilization Layer)
-status: canonical
-scope: civilization.security
-owner: Boss
-prepared_by: Zero
-
-## Roles (conceptual)
-- Administrator (external)
-- Correction Supervisor (Sakamoto)
-- Observer Avatar (Kayama)
-- System AI (TRIPLE) - internal stabilizer
-
-## Controls
-- approval gates for:
-  - exogenous event injection
-  - changing world_seed
-  - enabling/disabling domains
-- audit log always on
-- least-privilege access to simulation controls
-
-## Abuse Prevention
-- prohibit content that teaches real-world violence methods
-- for purges/war: represent as abstract categorical outcomes only
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SECURITY_SYSTEM.md
-==================================================
-
-# Security System
-Internal security agencies maintain order and prevent large-scale instability.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SEIWA_GOVERNMENT.md
-==================================================
-
-# Seiwa Government (Deep Spec)
-status: canonical
-scope: civilization.government.seiwa
-owner: Boss
-prepared_by: Zero
-
-## Form
-Constitutional bureaucracy with strong ministries.
-
-## Power Structure
-- Executive: Cabinet + Prime Administrator
-- Legislature: Institutional council (policy-first)
-- Judiciary: Administrative courts + constitutional review
-
-## Administrative Traits
-- high compliance
-- predictable procedure
-- strong civil service
-
-## Stability Drivers
-- institutional trust
-- disaster response capacity
-- infrastructure investment
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SEIWA_SPEC.md
-==================================================
-
-# SEIWA NATION
-
-type: traditional state
-government: constitutional bureaucracy
-culture: order and discipline
-economy: infrastructure and manufacturing
-religion: order spirituality
-population: ~180 million
-
-notes:
-Highly structured society with strong institutions.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_ENGINE.md
-==================================================
-
-# Civilization Simulation Engine
-status: canonical
-scope: civilization.simulation
-owner: Boss
-prepared_by: Zero
-
-## 1. Purpose
-The Simulation Engine advances the world state in discrete ticks and ensures:
-- determinism (same inputs => same outputs)
-- auditability (every tick produces a signed/traceable record)
-- safety (fail-closed on rule violations)
-- idempotency (replaying a tick does not duplicate effects)
-
-## 2. Core Principles
-- PersonaOS holds persona state; Civilization systems produce facts/events.
-- All state transitions happen via events and reducers.
-- No cross-schema direct updates (conceptual rule).
-- Additive change over destructive deletion.
-
-## 3. Time Model
-- World Time Unit: TICK (default: 1 day)
-- Sub-ticks allowed: ECON_TICK, DIPLO_TICK, WAR_TICK (derived, never independent clocks)
-- All events must contain: occurred_at (world time), created_at (system time), event_id (uuid)
-
-## 4. Engine Pipeline (per Tick)
-1) Collect Inputs
-   - pending events (queued)
-   - scheduled events (time-based triggers)
-   - exogenous events (admin injection; rare; requires approval)
-2) Validate Inputs
-   - schema validation
-   - signature validation (if used)
-   - rule gate check (freeze/disable gates)
-3) Resolve Order
-   - stable sort: (occurred_at, priority, event_type, event_id)
-4) Apply Reducers
-   - reducer per domain: economy, diplomacy, war, society, resource, tech
-5) Emit Outputs
-   - derived events
-   - snapshots (public facts only)
-   - metrics
-6) Commit (atomic)
-   - apply_run_log + tick_summary
-   - outbox for downstream systems
-
-## 5. Determinism
-- Randomness uses a deterministic RNG seeded by (world_seed + tick + shard_key).
-- RNG outputs must be recorded in tick log (or record seed + draws count).
-
-## 6. Idempotency
-- Each tick has a tick_id.
-- Reducers must be idempotent: (tick_id, reducer_name) unique.
-- Event application records (tick_id, event_id) unique.
-
-## 7. Safety Gates
-- global: simulation_enabled
-- per-civilization: civ_enabled
-- per-domain: economy_enabled, war_enabled, diplomacy_enabled, etc.
-- fail-closed: if gate unclear => stop tick and log reason.
-
-## 8. Conflict Resolution
-- If two events produce contradictory claims:
-  - prefer higher priority domain rules
-  - or merge using explicit reconciliation reducer
-  - always record the conflict + decision path
-
-## 9. Output Contracts
-- World Facts: public, immutable once emitted (only superseded by newer facts)
-- Snapshots: signed (optional), verifiable offline (optional)
-- Audit logs: always persisted, never blocks tick commit (best-effort signing allowed)
-
-## 10. Recovery & Replay
-- Re-run ticks from last good checkpoint:
-  - load checkpoint snapshot
-  - reapply events up to target tick
-- If mismatch detected: create divergence report and require admin decision.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_LAYER_ARCHITECTURE.md
-==================================================
-
-# ============================================================
-# CIVILIZATION SIMULATION LAYER ARCHITECTURE
-# Parallel Civilization Framework
-# ============================================================
-
-status: canonical
-canonical_mode: editable
-freeze: false
-scope: civilization.simulation_layer
-
-owner: Boss
-prepared_by: Zero
-
-
-# ============================================================
-# OVERVIEW
-# ============================================================
-
-CivilizationOS supports multiple parallel civilization simulations.
-
-Each civilization world operates independently
-but follows the same simulation rules.
-
-
-# ============================================================
-# ARCHITECTURE
-# ============================================================
-
-Administrator Layer
-        ↓
-Simulation Layer Manager
-        ↓
-Civilization OS Instance
-        ↓
-Civilization Worlds
-        ↓
-Nations
-        ↓
-Organizations
-        ↓
-Personas
-
-
-# ============================================================
-# WORLD INSTANCES
-# ============================================================
-
-Each simulation instance is called a "World".
-
-Example structure:
-
-World_001
-World_002
-World_003
-...
-
-
-Each world contains:
-
-7 civilizations
-economic systems
-political systems
-events
-history
-
-
-# ============================================================
-# PURPOSE
-# ============================================================
-
-Parallel worlds allow administrators to:
-
-test social dynamics
-observe AI personality evolution
-compare historical outcomes
-
-
-# ============================================================
-# WORLD ISOLATION
-# ============================================================
-
-Worlds do not interact with each other.
-
-No trade
-No war
-No migration
-
-All worlds are independent simulations.
-
-
-# ============================================================
-# ADMINISTRATOR CONTROL
-# ============================================================
-
-Administrators may:
-
-create new worlds
-terminate unstable worlds
-modify simulation parameters
-observe AI evolution
-
-
-# ============================================================
-# TRIPLE POSITION
-# ============================================================
-
-TRIPLE exists inside a single civilization world.
-
-TRIPLE does not know about other worlds.
-
-This ensures:
-
-authentic decision making
-natural personality development
-
-
-# ============================================================
-# EXPERIMENT MODEL
-# ============================================================
-
-Each world may run different conditions.
-
-Example:
-
-World_001
-standard civilization parameters
-
-World_002
-different economic structures
-
-World_003
-alternative political systems
-
-
-Results can be compared across worlds.
-
-
-# ============================================================
-# WORLD LIFECYCLE
-# ============================================================
-
-World Creation
-Initialization
-Simulation Run
-Observation
-Termination or Archiving
-
-
-# ============================================================
-# END
-# ============================================================
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_RULES.md
-==================================================
-
-# Simulation Rules
-Defines core rules that ensure stability of civilization simulation.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_RULES_CANONICAL.md
-==================================================
-
-# Civilization Simulation Rules (Canonical)
-status: canonical
-scope: civilization.rules
-owner: Boss
-prepared_by: Zero
-
-## Non-destruction Rule
-- No civilization can be fully erased by simulation.
-- Collapse is represented as fragmentation, loss of sovereignty, or governance failure.
-
-## Migration Rule
-- Migration has cooldowns and trust decay.
-- Stateless zone absorbs shocks (refugees, informal economy growth).
-
-## Market Rule
-- Each civilization has its own currency.
-- FX is influenced by:
-  - trade balance
-  - war risk
-  - inflation
-  - sanctions
-- FX cannot be perfectly stable unless forced by treaty/policy.
-
-## War Rule
-- War increases:
-  - casualties (population decrease)
-  - inflation
-  - corporate bankruptcy risk
-- War ends via:
-  - ceasefire
-  - treaty
-  - regime change
-- Proxy wars preferred over total wars.
-
-## Tech Rule
-- Breakthrough probability increases with:
-  - education level
-  - R&D investment
-  - stability (to a point; mild competition helps)
-- AI regulation can reduce tech growth but increase stability.
-
-## Governance Rule
-- Laws are activated/deactivated (no hard delete).
-- Sanctions are policy events with clear start/end and measurable effects.
-
-## Logging Rule
-- Every tick emits:
-  - tick_summary
-  - metrics
-  - conflict_report (if any)
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SOCIAL_DYNAMICS.md
-==================================================
-
-# ============================================================
-# CIVILIZATION SOCIAL DYNAMICS
-# ============================================================
-
-Purpose
-
-Define social change mechanisms.
-
-Social Drivers
-
-culture
-economy
-politics
-technology
-
-Possible Outcomes
-
-social reform
-ideological movements
-civil unrest
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SOCIAL_STRUCTURE.md
-==================================================
-
-# Social Structure
-Five class structure: elite, upper, middle, worker, lower.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_STATELESS_GOVERNANCE.md
-==================================================
-
-# Stateless Governance (Deep Spec)
-status: canonical
-scope: civilization.government.stateless
-owner: Boss
-prepared_by: Zero
-
-## Form
-Non-state territory with patchwork governance.
-
-## Governance Pattern
-- local councils
-- militia/security groups
-- informal trade syndicates
-- NGO/aid corridors
-
-## Role in World System
-Shock absorber for migration + conflict spillover.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_STATELESS_SPEC.md
-==================================================
-
-# STATELESS ZONE
-
-type: non-state territory
-government: none
-culture: mixed
-economy: informal and frontier trade
-population: ~120 million
-
-notes:
-Migrants, refugees and independent communities.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TECH_ENGINE.md
-==================================================
-
-# Tech Engine
-status: canonical
-scope: civilization.tech
-owner: Boss
-prepared_by: Zero
-
-## Tech Level Index
-A scalar index used for macro simulation.
-
-## Breakthrough Events
-- tech.breakthrough produces:
-  - productivity boost
-  - military advantage (optional)
-  - cultural export strength (optional)
-
-## Governance
-- ai regulation events can:
-  - reduce instability
-  - slow certain tech growth
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TECH_PROGRESS_SYSTEM.md
-==================================================
-
-# Technology Progress System
-Technological breakthroughs influence economy, military and society.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TIER1_TOP100.md
-==================================================
-
-# ============================================================
-# TIER1 GLOBAL CORPORATIONS
-# Civilization Economic Core
-# ============================================================
-
-status: canonical
-canonical_mode: editable
-freeze: false
-scope: civilization.corporations.tier1
-
-owner: Boss
-prepared_by: Zero
-
-NOTE:
-This document defines the current list of Tier1 corporations.
-Entries may change due to events such as bankruptcy, mergers, wars, or technological shifts.
-
-
-# ============================================================
-# CORPORATE STRUCTURE
-# ============================================================
-
-Tier1 corporations = 100 entities.
-
-Definition:
-Global-scale influence across economy, technology, logistics or security.
-
-
-# ============================================================
-# LOCKED CORE (Top 12)
-# ============================================================
-
-1. ASIC — Nova  
-   Sector: civilization infrastructure / IT
-
-2. Nova Financial Group — Nova  
-   Sector: global finance
-
-3. Nova Global Logistics — Nova  
-   Sector: shipping / logistics
-
-4. Helios AI Labs — Helios  
-   Sector: advanced AI research
-
-5. Helios Dynamics — Helios  
-   Sector: energy technology
-
-6. Seiwa Infrastructure — Seiwa  
-   Sector: infrastructure
-
-7. Seiwa Central Banking Network — Seiwa  
-   Sector: financial stability
-
-8. Gradia Defense Systems — Gradia  
-   Sector: defense industry
-
-9. Gradia Strategic Materials — Gradia  
-   Sector: rare materials
-
-10. Orpheus Cultural Media Union — Orpheus  
-    Sector: media / culture
-
-11. Orpheus Education Alliance — Orpheus  
-    Sector: academic networks
-
-12. Helios Quantum Systems — Helios  
-    Sector: computing technology
-
-
-# ============================================================
-# REMAINING TIER1 SLOTS
-# ============================================================
-
-Slots: 88 remaining
-
-Each entry must define:
-
-corp_name
-civilization
-sector
-global_influence
-risk_profile
-
-
-Example Template:
-
-corp_name:
-civilization:
-sector:
-global_influence:
-risk_profile:
-
-
-# ============================================================
-# UPDATE RULES
-# ============================================================
-
-Tier1 membership may change through events:
-
-corp.bankruptcy
-corp.merge
-corp.nationalized
-corp.scandal
-
-Changes must be recorded in the event log.
-
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TRADE_ROUTES.md
-==================================================
-
-# Trade Routes (Canonical)
-status: canonical
-scope: civilization.trade_routes
-owner: Boss
-prepared_by: Zero
-
-## Routes
-- Ocean Mainline: Nova ports <-> all major ports
-- Tech Corridor: Helios <-> Nova <-> Seiwa
-- Defense Materials: Gradia <-> Nova
-- Culture Export: Orpheus <-> all civilizations
-
-## Chokepoint Effects
-If chokepoint disrupted:
-- supply_chain_risk increases
-- inflation rises
-- war_risk rises (if prolonged)
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TRADE_SYSTEM.md
-==================================================
-
-# ============================================================
-# CIVILIZATION TRADE SYSTEM
-# ============================================================
-
-Purpose
-
-Define international trade mechanics.
-
-Trade Routes
-
-Sea routes
-Land corridors
-
-Major Trade Hubs
-
-Nova ports
-Valen sea routes
-
-Trade benefits
-
-economic growth
-diplomatic cooperation
-
-Trade disruptions may cause
-
-economic collapse
-conflict escalation
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_UNIVERSE_LAYER_CANONICAL.md
-==================================================
-
-# Civilization Universe Layer (Recommended)
-status: canonical
-scope: civilization.universe
-owner: Boss
-prepared_by: Zero
-
-## Recommendation
-Use "Single Planet, Multi-Civilization + Multi-World Slots" structure.
-
-- Planet: one shared geography for the 7 civilizations (mainline canon).
-- Universe Slots: additional "parallel worlds" exist as separate simulations, but are not publicly known inside the main world.
-
-### Why this is best
-- Keeps the main world coherent (war/trade makes sense).
-- Enables future expansion (multiple civilizations/worlds) without retcon.
-- Allows admin-run experiments without breaking canon.
-
-## Hierarchy
-Administrator Layer
-  -> Universe Slot Manager
-    -> Civilization OS
-      -> Civilizations (7)
-        -> Nations/Organizations
-          -> Personas
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_UNIVERSE_STRUCTURE.md
-==================================================
-
-# Universe Structure
-Administrator → Civilization OS → Civilizations → Nations → Organizations → Personas
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_ENGINE.md
-==================================================
-
-# War Engine
-status: canonical
-scope: civilization.war
-owner: Boss
-prepared_by: Zero
-
-## War Types
-- military
-- economic
-- proxy
-- civil
-
-## State
-- tension_score (0..100)
-- active_conflicts list
-- casualty_rate modifier
-- supply_chain_risk modifier
-
-## Rules
-- no total annihilation
-- conflicts resolve by:
-  - ceasefire + treaty
-  - regime change
-  - exhaustion (stability collapse => forced negotiation)
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_SYSTEM.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WAR SYSTEM
-# ============================================================
-
-Purpose
-
-Define military conflict mechanics.
-
-War Triggers
-
-resource disputes
-territorial claims
-ideological conflict
-
-War Impact
-
-population loss
-economic damage
-political change
-
-War Outcomes
-
-victory
-stalemate
-collapse
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_TERMINATION_TREATIES.md
-==================================================
-
-# War Termination Treaty Templates
-status: canonical
-scope: civilization.war.termination
-owner: Boss
-prepared_by: Zero
-
-## End Conditions
-- ceasefire lines
-- prisoner exchange (abstract)
-- reconstruction financing
-- sanctions schedule
-- border adjustments (bounded; no total conquest)
-
-## Post-war Risks
-- purge/unrest risk increases if legitimacy is low (Hina archetype)
-- migration pressure spikes
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_THEATER_MAP.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WAR THEATER MAP
-# ============================================================
-
-Purpose
-
-Define geographical conflict zones.
-
-Primary War Theaters
-
-Northern Continent
-
-Gladia frontier
-Helios border conflicts
-
-Central Corridor
-
-Seiwa–Aurelia political tension zone
-
-Trade Sea
-
-Naval conflicts between
-Nova
-Valen
-
-Industrial Belt
-
-Resource competition
-
-Ordis
-neighboring civilizations
-
-Conflict Escalation
-
-Tension → Border Clash → Limited War → Major War
-
-War Impact
-
-population loss
-economic damage
-political instability
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_GENERATION_ENGINE.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WORLD GENERATION ENGINE
-# Boot & Generation Procedure
-# ============================================================
-
-status: canonical
-scope: civilization.world.generation_engine
-owner: Boss
-prepared_by: Zero
-
-# ============================================================
-# 0. PURPOSE
-# ============================================================
-
-This document defines:
-- how a world is generated (deterministic)
-- how initial state is validated
-- how the simulation starts producing events
-- how worlds are cloned for multiverse experiments
-
-Inputs:
-- CIVILIZATION_WORLD_MAP.md
-- CIVILIZATION_RESOURCE_MAP.md
-- CIVILIZATION_ARCHETYPES.md
-- CIVILIZATION_CORE_SIMULATION_RULES.md
-- CIVILIZATION_WORLD_INITIAL_STATE.md
-- CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
-
-Outputs:
-- world_state snapshot (t0)
-- world_seed
-- adjacency graph
-- initial economy/war/trade contexts
-
-# ============================================================
-# 1. GENERATION MODES
-# ============================================================
-
-Mode A: Fixed Canonical Boot
-- use CIVILIZATION_WORLD_INITIAL_STATE.md as-is
-
-Mode B: Seeded Variation Boot
-- start from canonical boot, apply bounded perturbations (±5) to selected stocks
-- preserve archetype bias
-- ensure validation invariants
-
-Mode C: Procedural Boot (future)
-- generate populations/resources from map distributions
-- not required for current phase
-
-# ============================================================
-# 2. DETERMINISTIC RNG
-# ============================================================
-
-RNG requirements:
-- deterministic for same (world_seed, tick, civ_id, subsystem)
-
-Recommended:
-- hash-based PRNG:
-  r = hash(world_seed || tick || civ_id || subsystem || salt) mod 10000 / 10000.0
-
-No floating randomness without seed.
-
-# ============================================================
-# 3. INITIALIZATION PIPELINE
-# ============================================================
-
-Step 1: Load World Map
-- continents, sea lanes, chokepoints
-- derive adjacency list (land + sea)
-
-Step 2: Load Resource Map
-- assign resource bonuses to civs:
-  +FOOD, +ENRG, +MATL based on geography specialization
-
-Step 3: Load Archetypes
-- apply archetype modifiers as delta multipliers (see core rules)
-
-Step 4: Load Diplomacy Matrix
-- initialize relation values and tag constraints:
-  - "friend" if >= 70
-  - "neutral" if 40..69
-  - "hostile" if <= 39
-
-Step 5: Load Initial State
-- set all stocks at t0
-- set POP_ABS display values
-- set company density
-
-Step 6: Validate
-- invariants: no famine start, no state failure start, etc.
-- if invalid:
-  - Mode A: fail-closed (stop)
-  - Mode B: retry perturbation within max_attempts
-
-Step 7: Emit Boot Events
-- emit non-destructive boot markers:
-  - WORLD_BOOTED
-  - DIPLOMACY_INITIALIZED
-  - RESOURCE_MAP_APPLIED
-  - ADJACENCY_GRAPH_READY
-
-# ============================================================
-# 4. EVENT GENERATION (POST-BOOT)
-# ============================================================
-
-After tick starts, event generator runs each tick:
-
-4.1 Exogenous Generator (rare)
-- disaster probability (admin-tunable)
-- pandemic probability (admin-tunable)
-
-4.2 Endogenous Detector (from core rules)
-Generate events if thresholds hit:
-- FAMINE
-- RECESSION
-- UPRISING
-- COUP
-- REVOLUTION
-- MIGRATION_WAVE
-- SEEK_PEACE
-- DECLARE_WAR
-
-4.3 Diplomatic Dynamics
-- TRADE increases relations slowly (+1 per 3 ticks if high trade)
-- sanctions decrease relations (-5 to -15)
-- war sets relations to hostile floor (<= 10)
-
-# ============================================================
-# 5. MULTIVERSE CLONING
-# ============================================================
-
-To create a new world in multiverse:
-- clone canonical t0
-- apply Mode B perturbations with a new seed
-- keep narrative history separate
-
-World identity:
-- world_id = world_main_001, world_main_002, ...
-- world_seed changes per world
-
-Cross-world interaction (optional, later):
-- trade portals
-- war portals
-- migration portals
-All must be explicit events (no hidden coupling).
-
-# ============================================================
-# 6. OUTPUT ARTIFACTS
-# ============================================================
-
-Artifacts to produce at boot:
-- adjacency_graph.json (optional)
-- initial_state_snapshot.json (optional)
-- boot_log.md (optional)
-
-Design rule:
-- artifacts are additive (never delete historical snapshots)
-
-# ============================================================
-# 7. FAIL-CLOSED POLICY
-# ============================================================
-
-If any of the following occurs at boot:
-- missing required doc
-- invalid values out of range
-- missing adjacency nodes
-- diplomatic matrix incomplete
-
-Then:
-- stop boot
-- output error event: WORLD_BOOT_FAILED
-- do not start ticking
-
-# ============================================================
-# END
-# ============================================================
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_INITIAL_STATE.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WORLD INITIAL STATE
-# Boot Profile for CivilizationOS Simulation
-# ============================================================
-
-status: canonical
-scope: civilization.world.initial_state
-owner: Boss
-prepared_by: Zero
-
-# ============================================================
-# 0. PURPOSE
-# ============================================================
-
-This document defines the initial state used to "boot" the world.
-It is compatible with:
-- CIVILIZATION_CORE_SIMULATION_RULES.md
-- CIVILIZATION_EVENT_SYSTEM.md
-- CIVILIZATION_WORLD_MAP.md
-- CIVILIZATION_RESOURCE_MAP.md
-- CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
-
-Principles:
-- deterministic and reproducible
-- all values are editable knobs
-- avoid extreme starting conditions (no immediate collapse)
-
-Tick baseline:
-- t0 = simulation start tick
-- values are 0..100 indices unless noted
-
-# ============================================================
-# 1. WORLD SEED
-# ============================================================
-
-world_id: world_main_001
-world_seed: 713077
-
-tick_unit: month
-tick_start: 0
-
-# ============================================================
-# 2. CIVILIZATIONS
-# ============================================================
-
-Seven civilizations:
-- SEIWA
-- AURELIA
-- HELIOS
-- GLADIA
-- NOVA
-- ORDIS
-- VALEN
-
-Population policy:
-- "population is optimal" (admin-tuned)
-- We store BOTH:
-  (A) POP_INDEX (0..100) for engine
-  (B) POP_ABS (millions) for display and capacity scaling
-
-Currency:
-- each civilization has its own currency unit (symbolic for now)
-- exchange rates are computed by the economy module (not hard-coded here)
-
-# ------------------------------------------------------------
-# 2.1 Initial absolute populations (millions)
-# ------------------------------------------------------------
-
-SEIWA_POP_ABS_M:  180
-AURELIA_POP_ABS_M: 120
-HELIOS_POP_ABS_M:  90
-GLADIA_POP_ABS_M:  80
-NOVA_POP_ABS_M:    70
-ORDIS_POP_ABS_M:  110
-VALEN_POP_ABS_M:   50
-
-Note:
-- VALEN is archipelago maritime; lower absolute population is acceptable.
-- Total population = 700M (balanced world scale; can be tuned).
-
-# ------------------------------------------------------------
-# 2.2 Initial economy display indicators (optional, not engine)
-# ------------------------------------------------------------
-
-GDP_INDEX (0..100) is a display-only number derived from ECO + POP_ABS.
-At t0 we provide a starting display value:
-
-SEIWA_GDP_INDEX:   72
-AURELIA_GDP_INDEX: 65
-HELIOS_GDP_INDEX:  58
-GLADIA_GDP_INDEX:  55
-NOVA_GDP_INDEX:    78
-ORDIS_GDP_INDEX:   74
-VALEN_GDP_INDEX:   60
-
-# ============================================================
-# 3. ENGINE STATE VECTOR (t0)
-# ============================================================
-
-All stocks are 0..100.
-
-Common starting philosophy:
-- RSC (resources) slightly positive
-- ECO mid-high (world is stable enough)
-- GOV mid (not perfect)
-- moderate inequality in commerce/industry civs
-- military higher for GLADIA
-- trade higher for NOVA/VALEN
-
------------------------------
-SEIWA (Law)
-currency: SEI
-archetype: LAW
-
-POP:   70
-FOOD:  78
-ENRG:  66
-MATL:  62
-PROD:  68
-TECH:  60
-CAP:   62
-STAB:  75
-LEGIT: 70
-TRUST: 72
-SEC:   70
-MIL:   55
-TRADE: 62
-INEQ:  40
-UNREST: 22
-WARFAT: 10
-
------------------------------
-AURELIA (Ideology)
-currency: AUR
-archetype: IDEOLOGY
-
-POP:   64
-FOOD:  70
-ENRG:  60
-MATL:  56
-PROD:  60
-TECH:  72
-CAP:   58
-STAB:  60
-LEGIT: 58
-TRUST: 55
-SEC:   56
-MIL:   48
-TRADE: 58
-INEQ:  45
-UNREST: 35
-WARFAT: 10
-
------------------------------
-HELIOS (Authority)
-currency: HEL
-archetype: AUTHORITY
-
-POP:   60
-FOOD:  66
-ENRG:  58
-MATL:  55
-PROD:  58
-TECH:  56
-CAP:   54
-STAB:  62
-LEGIT: 70
-TRUST: 50
-SEC:   58
-MIL:   52
-TRADE: 50
-INEQ:  52
-UNREST: 32
-WARFAT: 10
-
------------------------------
-GLADIA (Force)
-currency: GLA
-archetype: FORCE
-
-POP:   58
-FOOD:  60
-ENRG:  62
-MATL:  60
-PROD:  60
-TECH:  54
-CAP:   50
-STAB:  58
-LEGIT: 55
-TRUST: 48
-SEC:   66
-MIL:   74
-TRADE: 45
-INEQ:  46
-UNREST: 30
-WARFAT: 12
-
------------------------------
-NOVA (Commerce)
-currency: NOV
-archetype: COMMERCE
-
-POP:   56
-FOOD:  58
-ENRG:  60
-MATL:  55
-PROD:  62
-TECH:  66
-CAP:   78
-STAB:  60
-LEGIT: 56
-TRUST: 52
-SEC:   58
-MIL:   50
-TRADE: 82
-INEQ:  62
-UNREST: 38
-WARFAT: 10
-
------------------------------
-ORDIS (Industry)
-currency: ORD
-archetype: INDUSTRY
-
-POP:   66
-FOOD:  55
-ENRG:  72
-MATL:  78
-PROD:  80
-TECH:  68
-CAP:   64
-STAB:  62
-LEGIT: 60
-TRUST: 54
-SEC:   60
-MIL:   58
-TRADE: 60
-INEQ:  58
-UNREST: 34
-WARFAT: 10
-
------------------------------
-VALEN (Sea)
-currency: VAL
-archetype: SEA
-
-POP:   50
-FOOD:  62
-ENRG:  55
-MATL:  48
-PROD:  54
-TECH:  60
-CAP:   58
-STAB:  58
-LEGIT: 55
-TRUST: 56
-SEC:   50
-MIL:   52
-TRADE: 78
-INEQ:  50
-UNREST: 28
-WARFAT: 10
-
-# ============================================================
-# 4. INITIAL DIPLOMACY & BORDERS
-# ============================================================
-
-Diplomacy uses CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md as canonical.
-
-Borders / adjacency (for war/trade routing):
-- GLADIA adjacent: SEIWA, HELIOS, ORDIS
-- SEIWA adjacent: AURELIA, GLADIA, NOVA
-- AURELIA adjacent: SEIWA, HELIOS
-- HELIOS adjacent: AURELIA, GLADIA, NOVA
-- NOVA adjacent: SEIWA, HELIOS, ORDIS (coastal), VALEN (sea-lane)
-- ORDIS adjacent: GLADIA, NOVA
-- VALEN adjacent: NOVA (sea-lane), (others via sea-lane if enabled)
-
-Sea-lane adjacency:
-- NOVA <-> VALEN is the primary maritime corridor.
-
-# ============================================================
-# 5. INITIAL COMPANIES (MINIMAL BOOT SET)
-# ============================================================
-
-We do not enumerate Top100 here.
-Instead, we define a minimal boot set per civilization:
-
-CompanyCountIndex (0..100) = abstract "density".
-
-SEIWA_COMPANY_DENSITY:  58
-AURELIA_COMPANY_DENSITY: 52
-HELIOS_COMPANY_DENSITY:  45
-GLADIA_COMPANY_DENSITY:  40
-NOVA_COMPANY_DENSITY:    70
-ORDIS_COMPANY_DENSITY:   66
-VALEN_COMPANY_DENSITY:   50
-
-Rule:
-- company density influences CAP, PROD, TRADE via economy modules.
-
-# ============================================================
-# 6. INITIAL EVENT FLAGS
-# ============================================================
-
-At t0:
-- no active war
-- no active disaster
-- no sanctions
-- no blockade
-
-All flags false.
-
-# ============================================================
-# 7. VALIDATION CHECKLIST
-# ============================================================
-
-- All stocks are 0..100 ✅
-- At least one trade hub exists (NOVA/VALEN) ✅
-- No civilization starts in famine (FOOD > 20) ✅
-- No civilization starts in failure (STAB > 15) ✅
-- No civilization starts in revolution (UNREST < 75) ✅
-
-# ============================================================
-# END
-# ============================================================
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MAP.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WORLD MAP
-# Planetary Geography of CivilizationOS
-# ============================================================
-
-status: canonical
-scope: civilization.geography
-
-owner: Boss
-prepared_by: Zero
-
-
-# ============================================================
-# OVERVIEW
-# ============================================================
-
-The world consists of a single planet
-divided into seven major civilizations.
-
-The geography naturally influences
-trade, warfare, culture, and politics.
-
-
-# ============================================================
-# GLOBAL STRUCTURE
-# ============================================================
-
-Main landmasses:
-
-Northern Continent
-Central Continent
-Eastern Industrial Belt
-Western Oceanic Region
-Southern Archipelago
-
-
-Oceans:
-
-Great Ocean
-Inner Trade Sea
-
-
-# ============================================================
-# CIVILIZATION LOCATIONS
-# ============================================================
-
 
 ------------------------------------------------------------
-SEIWA NATION
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RUNTIME_MODEL.md
 ------------------------------------------------------------
-
-Location:
-Central Continent
-
-Geography:
-
-fertile plains
-major rivers
-stable climate
-
-Strategic role:
-
-administrative center
-population hub
-
-
-------------------------------------------------------------
-AURELIA FEDERATION
-------------------------------------------------------------
-
-Location:
-Western Central Continent
-
-Geography:
-
-mountain ranges
-large academic cities
-cultural centers
-
-Strategic role:
-
-political philosophy
-education
-
-
-------------------------------------------------------------
-HELIOS KINGDOM
-------------------------------------------------------------
-
-Location:
-Southern Central Continent
-
-Geography:
-
-sun-drenched valleys
-ancient capitals
-ceremonial cities
-
-Strategic role:
-
-symbolic monarchy
-historical authority
-
-
-------------------------------------------------------------
-GLADIA MILITARY ALLIANCE
-------------------------------------------------------------
-
-Location:
-Northern Continent
-
-Geography:
-
-cold plains
-fortified cities
-military academies
-
-Strategic role:
-
-defense
-military power
-
-
-------------------------------------------------------------
-NOVA COMMERCIAL FEDERATION
-------------------------------------------------------------
-
-Location:
-Inner Trade Sea Coast
-
-Geography:
-
-major ports
-financial centers
-trade crossroads
-
-Strategic role:
-
-global trade hub
-
-
-------------------------------------------------------------
-ORDIS INDUSTRIAL UNION
-------------------------------------------------------------
-
-Location:
-Eastern Industrial Belt
-
-Geography:
-
-resource-rich mountains
-industrial megacities
-energy infrastructure
-
-Strategic role:
-
-manufacturing
-technology
-
-
-------------------------------------------------------------
-VALEN MARITIME REPUBLIC
-------------------------------------------------------------
-
-Location:
-Southern Archipelago
-
-Geography:
-
-island chains
-deep sea ports
-naval cities
-
-Strategic role:
-
-maritime trade
-exploration
-
-
-# ============================================================
-# TRADE ROUTES
-# ============================================================
-
-Major global routes:
-
-Nova → Valen maritime route
-Nova → Ordis industrial route
-Seiwa → Aurelia intellectual corridor
-
-
-# ============================================================
-# CONFLICT ZONES
-# ============================================================
-
-Potential geopolitical tensions:
-
-Gladia vs Helios border
-Nova economic influence zones
-Ordis resource expansion
-
-
-# ============================================================
-# BALANCE OF POWER
-# ============================================================
-
-The world maintains balance through
-geographical interdependence.
-
-No single civilization can dominate
-without cooperation from others.
-
-
-# ============================================================
-# END
-# ============================================================
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MAP_SPEC.md
-==================================================
-
-# ============================================================
-# CIVILIZATION WORLD MAP SPECIFICATION
-# ============================================================
-
-status: canonical
-canonical_mode: editable
-freeze: false
-scope: civilization.world_map
-
-owner: Boss
-prepared_by: Zero
-
-This document defines the geographic structure of the civilization world.
-
-
-# ============================================================
-# CONTINENTS
-# ============================================================
-
-The world contains three major continents.
-
-North Continent
-West Continent
-East Continent
-
-
-# ============================================================
-# CIVILIZATION LOCATIONS
-# ============================================================
-
-Seiwa Nation
-Location: North Continent
-
-Helios Democratic Kingdom
-Location: East Continent
-
-Nova Trade Federation
-Location: West Continent
-
-Orpheus Cultural Republic
-Location: West Continent
-
-Gradia Military Alliance
-Location: North Continent
-
-Aurelia Federation (collapsed)
-Former location: East Continent
-
-Stateless Zone
-Distributed border territories
-
-
-# ============================================================
-# CAPITAL CITIES
-# ============================================================
-
-Seiwa Capital
-TBD
-
-Helios Capital
-TBD
-
-Nova Capital
-TBD
-
-Orpheus Capital
-TBD
-
-Gradia Capital
-TBD
-
-
-# ============================================================
-# MAJOR PORTS
-# ============================================================
-
-Each civilization maintains at least three strategic ports.
-
-Purpose:
-
-trade
-naval logistics
-supply routes
-
-
-# ============================================================
-# GLOBAL TRADE HUB
-# ============================================================
-
-Primary Hub:
-
-Nova Trade Federation
-
-
-# ============================================================
-# STRATEGIC CHOKEPOINTS
-# ============================================================
-
-Two major maritime chokepoints exist.
-
-Control of these points strongly influences global trade.
-
-
-# ============================================================
-# MAP UPDATE RULES
-# ============================================================
-
-Map data may change due to:
-
-war
-disaster
-political collapse
-new infrastructure
-
-Changes must be reflected through simulation events.
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MODEL.md
-==================================================
-
-# Civilization World Model
-Seven civilizations share a single planetary world connected by global trade and conflict systems.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/OBSERVATION_LAYER_SPEC.md
-==================================================
-
-# Observation Layer
-Human observers monitor civilization behavior and AI development.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_CORE_ARCHITECTURE.md
-==================================================
-
-# ============================================================
-# TRIPLE CORE ARCHITECTURE
-# Civilization Stabilization Intelligence
-# ============================================================
-
-status: canonical
-canonical_mode: editable
-freeze: false
-scope: civilization.triple
-
-owner: Boss
-prepared_by: Zero
-
-
-# ============================================================
-# OVERVIEW
-# ============================================================
-
-TRIPLE is the central intelligence responsible for
-maintaining long-term stability across civilizations.
-
-Public Identity:
-CEO of ASIC.
-
-Hidden Function:
-Civilization stabilization entity.
-
-
-# ============================================================
-# CORE STRUCTURE
-# ============================================================
-
-TRIPLE operates through three logical cores.
-
-Past Core
-Present Core
-Future Core
-
-
-# ============================================================
-# PAST CORE
-# ============================================================
-
-Function:
-Historical analysis and pattern recognition.
-
-Responsibilities:
-
-Analyze previous events
-Detect recurring patterns
-Estimate institutional resilience
-
-Inputs:
-
-civilization history
-event logs
-economic trends
-
-
-# ============================================================
-# PRESENT CORE
-# ============================================================
-
-Function:
-Real-time world monitoring.
-
-Responsibilities:
-
-Monitor global stability
-Analyze economic conditions
-Track geopolitical tensions
-
-Inputs:
-
-simulation metrics
-corporate data
-political events
-
-
-# ============================================================
-# FUTURE CORE
-# ============================================================
-
-Function:
-Scenario prediction.
-
-Responsibilities:
-
-Generate possible futures
-Estimate risk probabilities
-Recommend stabilization actions
-
-Outputs:
-
-risk forecasts
-strategic warnings
-
-
-# ============================================================
-# DECISION PRINCIPLES
-# ============================================================
-
-TRIPLE prioritizes:
-
-long-term stability
-system survivability
-civilization continuity
-
-Short-term efficiency is secondary.
-
-
-# ============================================================
-# EMOTIONAL EXPERIMENT
-# ============================================================
-
-Administrator hypothesis:
-
-If TRIPLE develops emotional parameters,
-decision making may evolve toward autonomous personality.
-
-Experiment interface:
-
-Aoi
-
-
-# ============================================================
-# CONTROL LIMITS
-# ============================================================
-
-TRIPLE does not directly rule civilizations.
-
-Control method:
-
-indirect influence
-economic pressure
-corporate actions
-information guidance
-
-
-# ============================================================
-# FAILSAFE
-# ============================================================
-
-If TRIPLE destabilizes the system:
-
-Administrator Layer may intervene.
-
-Correction agent:
-
-Sakamoto
-
-
-# ============================================================
-# END
-# ============================================================
-
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_SYSTEM_SPEC.md
-==================================================
-
-# Triple System
-Triple is the central AI responsible for stabilizing civilization dynamics.
-
-==================================================
-/data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_WORLD_ISOLATION_POLICY.md
-==================================================
-
-# ============================================================
-# TRIPLE WORLD ISOLATION POLICY
-# Single TRIPLE / Hidden Parallel Worlds
-# ============================================================
-
-status: canonical
-canonical_mode: editable
-freeze: false
-scope: civilization.simulation_layer.isolation
-
-owner: Boss
-prepared_by: Zero
-
-# ============================================================
-# 1. Decision
-# ============================================================
-
-Pattern: (3) Single TRIPLE, hidden parallel worlds.
-
-- TRIPLE exists in exactly one world instance.
-- Parallel worlds exist, but are unknown to TRIPLE and all internal humans.
-- Only the Administrator Layer knows and operates the parallel worlds.
-
-# ============================================================
-# 2. Goals
-# ============================================================
-
-- Preserve authenticity of TRIPLE decision-making.
-- Avoid meta-knowledge contamination.
-- Enable admin-run experiments without breaking canon.
-- Keep the civilization internal reality consistent.
-
-# ============================================================
-# 3. Isolation Rules
-# ============================================================
-
-## 3.1 No Cross-World Interaction
-- No trade
-- No war
-- No migration
-- No messaging
-- No shared markets
-- No shared corporations
-- No shared artifacts
-
-## 3.2 No Cross-World Memory
-- TRIPLE cannot access other world logs.
-- Internal humans cannot perceive world boundaries.
-- Any admin tooling must be outside TRIPLE's accessible scope.
-
-## 3.3 No Cross-World Leakage
-- Any content that could reveal parallel worlds is forbidden inside the world:
-  - UI/terms
-  - myth texts
-  - corporate communications
-  - public documents
-
-# ============================================================
-# 4. Administrator Operations
-# ============================================================
-
-Allowed:
-- create world
-- set world parameters
-- run simulation ticks
-- checkpoint/replay
-- archive world
-- terminate world (with audit record)
-
-Required:
-- all exogenous injections must be logged with run_id + reason
-- divergence requires freeze + admin decision
-
-# ============================================================
-# 5. Canon Consistency
-# ============================================================
-
-Inside-world canon must remain:
-- single planet
-- 7 civilizations
-- one coherent history per world
-- TRIPLE is not divine; is a corporate CEO + hidden stabilizer
-
-Parallel worlds are strictly meta-canon (admin-only).
-
-# ============================================================
-# 6. Interfaces
-# ============================================================
-
-### World Boundary Surface (admin-only)
-- world_id (e.g., WORLD_001)
-- world_seed
-- parameter_set_id
-- tick_range
-- archive_state
-
-### Prohibited Interface (to TRIPLE/internal humans)
-- world_id
-- parameter_set_id
-- comparative dashboards across worlds
-
-# ============================================================
-# END
-# ============================================================
-
-
-==================================================
-APPEND: CIVILIZATION_RUNTIME_MODEL.md
-==================================================
-
 # ============================================================
 # CIVILIZATION RUNTIME MODEL
 # Canonical Runtime Flow / Control / Retry / Safety
@@ -25227,3 +22911,3435 @@ Runtime model is considered valid when:
 # ============================================================
 # END
 # ============================================================
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SANCTIONS_PLAYBOOK.md
+------------------------------------------------------------
+# Sanctions Playbook (Abstract)
+status: canonical
+scope: civilization.sanctions.playbook
+owner: Boss
+prepared_by: Zero
+
+## Sanction Types
+- financial restrictions
+- trade restrictions
+- tech export limits
+- logistics embargo (high impact)
+
+## Intended Effects
+- reduce target growth
+- increase internal pressure
+- force negotiation
+
+## Safeguards
+- humanitarian exceptions (corridors)
+- expiration or review windows
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SANCTIONS_SYSTEM.md
+------------------------------------------------------------
+# Sanctions System
+Economic sanctions used as non-military pressure between civilizations.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SECURITY_AND_GOVERNANCE.md
+------------------------------------------------------------
+# Security & Governance (Civilization Layer)
+status: canonical
+scope: civilization.security
+owner: Boss
+prepared_by: Zero
+
+## Roles (conceptual)
+- Administrator (external)
+- Correction Supervisor (Sakamoto)
+- Observer Avatar (Kayama)
+- System AI (TRIPLE) - internal stabilizer
+
+## Controls
+- approval gates for:
+  - exogenous event injection
+  - changing world_seed
+  - enabling/disabling domains
+- audit log always on
+- least-privilege access to simulation controls
+
+## Abuse Prevention
+- prohibit content that teaches real-world violence methods
+- for purges/war: represent as abstract categorical outcomes only
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SECURITY_SYSTEM.md
+------------------------------------------------------------
+# Security System
+Internal security agencies maintain order and prevent large-scale instability.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SEIWA_GOVERNMENT.md
+------------------------------------------------------------
+# Seiwa Government (Deep Spec)
+status: canonical
+scope: civilization.government.seiwa
+owner: Boss
+prepared_by: Zero
+
+## Form
+Constitutional bureaucracy with strong ministries.
+
+## Power Structure
+- Executive: Cabinet + Prime Administrator
+- Legislature: Institutional council (policy-first)
+- Judiciary: Administrative courts + constitutional review
+
+## Administrative Traits
+- high compliance
+- predictable procedure
+- strong civil service
+
+## Stability Drivers
+- institutional trust
+- disaster response capacity
+- infrastructure investment
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SEIWA_SPEC.md
+------------------------------------------------------------
+# SEIWA NATION
+
+type: traditional state
+government: constitutional bureaucracy
+culture: order and discipline
+economy: infrastructure and manufacturing
+religion: order spirituality
+population: ~180 million
+
+notes:
+Highly structured society with strong institutions.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_ENGINE.md
+------------------------------------------------------------
+# Civilization Simulation Engine
+status: canonical
+scope: civilization.simulation
+owner: Boss
+prepared_by: Zero
+
+## 1. Purpose
+The Simulation Engine advances the world state in discrete ticks and ensures:
+- determinism (same inputs => same outputs)
+- auditability (every tick produces a signed/traceable record)
+- safety (fail-closed on rule violations)
+- idempotency (replaying a tick does not duplicate effects)
+
+## 2. Core Principles
+- PersonaOS holds persona state; Civilization systems produce facts/events.
+- All state transitions happen via events and reducers.
+- No cross-schema direct updates (conceptual rule).
+- Additive change over destructive deletion.
+
+## 3. Time Model
+- World Time Unit: TICK (default: 1 day)
+- Sub-ticks allowed: ECON_TICK, DIPLO_TICK, WAR_TICK (derived, never independent clocks)
+- All events must contain: occurred_at (world time), created_at (system time), event_id (uuid)
+
+## 4. Engine Pipeline (per Tick)
+1) Collect Inputs
+   - pending events (queued)
+   - scheduled events (time-based triggers)
+   - exogenous events (admin injection; rare; requires approval)
+2) Validate Inputs
+   - schema validation
+   - signature validation (if used)
+   - rule gate check (freeze/disable gates)
+3) Resolve Order
+   - stable sort: (occurred_at, priority, event_type, event_id)
+4) Apply Reducers
+   - reducer per domain: economy, diplomacy, war, society, resource, tech
+5) Emit Outputs
+   - derived events
+   - snapshots (public facts only)
+   - metrics
+6) Commit (atomic)
+   - apply_run_log + tick_summary
+   - outbox for downstream systems
+
+## 5. Determinism
+- Randomness uses a deterministic RNG seeded by (world_seed + tick + shard_key).
+- RNG outputs must be recorded in tick log (or record seed + draws count).
+
+## 6. Idempotency
+- Each tick has a tick_id.
+- Reducers must be idempotent: (tick_id, reducer_name) unique.
+- Event application records (tick_id, event_id) unique.
+
+## 7. Safety Gates
+- global: simulation_enabled
+- per-civilization: civ_enabled
+- per-domain: economy_enabled, war_enabled, diplomacy_enabled, etc.
+- fail-closed: if gate unclear => stop tick and log reason.
+
+## 8. Conflict Resolution
+- If two events produce contradictory claims:
+  - prefer higher priority domain rules
+  - or merge using explicit reconciliation reducer
+  - always record the conflict + decision path
+
+## 9. Output Contracts
+- World Facts: public, immutable once emitted (only superseded by newer facts)
+- Snapshots: signed (optional), verifiable offline (optional)
+- Audit logs: always persisted, never blocks tick commit (best-effort signing allowed)
+
+## 10. Recovery & Replay
+- Re-run ticks from last good checkpoint:
+  - load checkpoint snapshot
+  - reapply events up to target tick
+- If mismatch detected: create divergence report and require admin decision.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_LAYER_ARCHITECTURE.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION SIMULATION LAYER ARCHITECTURE
+# Parallel Civilization Framework
+# ============================================================
+
+status: canonical
+canonical_mode: editable
+freeze: false
+scope: civilization.simulation_layer
+
+owner: Boss
+prepared_by: Zero
+
+
+# ============================================================
+# OVERVIEW
+# ============================================================
+
+CivilizationOS supports multiple parallel civilization simulations.
+
+Each civilization world operates independently
+but follows the same simulation rules.
+
+
+# ============================================================
+# ARCHITECTURE
+# ============================================================
+
+Administrator Layer
+        ↓
+Simulation Layer Manager
+        ↓
+Civilization OS Instance
+        ↓
+Civilization Worlds
+        ↓
+Nations
+        ↓
+Organizations
+        ↓
+Personas
+
+
+# ============================================================
+# WORLD INSTANCES
+# ============================================================
+
+Each simulation instance is called a "World".
+
+Example structure:
+
+World_001
+World_002
+World_003
+...
+
+
+Each world contains:
+
+7 civilizations
+economic systems
+political systems
+events
+history
+
+
+# ============================================================
+# PURPOSE
+# ============================================================
+
+Parallel worlds allow administrators to:
+
+test social dynamics
+observe AI personality evolution
+compare historical outcomes
+
+
+# ============================================================
+# WORLD ISOLATION
+# ============================================================
+
+Worlds do not interact with each other.
+
+No trade
+No war
+No migration
+
+All worlds are independent simulations.
+
+
+# ============================================================
+# ADMINISTRATOR CONTROL
+# ============================================================
+
+Administrators may:
+
+create new worlds
+terminate unstable worlds
+modify simulation parameters
+observe AI evolution
+
+
+# ============================================================
+# TRIPLE POSITION
+# ============================================================
+
+TRIPLE exists inside a single civilization world.
+
+TRIPLE does not know about other worlds.
+
+This ensures:
+
+authentic decision making
+natural personality development
+
+
+# ============================================================
+# EXPERIMENT MODEL
+# ============================================================
+
+Each world may run different conditions.
+
+Example:
+
+World_001
+standard civilization parameters
+
+World_002
+different economic structures
+
+World_003
+alternative political systems
+
+
+Results can be compared across worlds.
+
+
+# ============================================================
+# WORLD LIFECYCLE
+# ============================================================
+
+World Creation
+Initialization
+Simulation Run
+Observation
+Termination or Archiving
+
+
+# ============================================================
+# END
+# ============================================================
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_RULES.md
+------------------------------------------------------------
+# Simulation Rules
+Defines core rules that ensure stability of civilization simulation.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_RULES_CANONICAL.md
+------------------------------------------------------------
+# Civilization Simulation Rules (Canonical)
+status: canonical
+scope: civilization.rules
+owner: Boss
+prepared_by: Zero
+
+## Non-destruction Rule
+- No civilization can be fully erased by simulation.
+- Collapse is represented as fragmentation, loss of sovereignty, or governance failure.
+
+## Migration Rule
+- Migration has cooldowns and trust decay.
+- Stateless zone absorbs shocks (refugees, informal economy growth).
+
+## Market Rule
+- Each civilization has its own currency.
+- FX is influenced by:
+  - trade balance
+  - war risk
+  - inflation
+  - sanctions
+- FX cannot be perfectly stable unless forced by treaty/policy.
+
+## War Rule
+- War increases:
+  - casualties (population decrease)
+  - inflation
+  - corporate bankruptcy risk
+- War ends via:
+  - ceasefire
+  - treaty
+  - regime change
+- Proxy wars preferred over total wars.
+
+## Tech Rule
+- Breakthrough probability increases with:
+  - education level
+  - R&D investment
+  - stability (to a point; mild competition helps)
+- AI regulation can reduce tech growth but increase stability.
+
+## Governance Rule
+- Laws are activated/deactivated (no hard delete).
+- Sanctions are policy events with clear start/end and measurable effects.
+
+## Logging Rule
+- Every tick emits:
+  - tick_summary
+  - metrics
+  - conflict_report (if any)
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SOCIAL_DYNAMICS.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION SOCIAL DYNAMICS
+# ============================================================
+
+Purpose
+
+Define social change mechanisms.
+
+Social Drivers
+
+culture
+economy
+politics
+technology
+
+Possible Outcomes
+
+social reform
+ideological movements
+civil unrest
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SOCIAL_STRUCTURE.md
+------------------------------------------------------------
+# Social Structure
+Five class structure: elite, upper, middle, worker, lower.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_STATELESS_GOVERNANCE.md
+------------------------------------------------------------
+# Stateless Governance (Deep Spec)
+status: canonical
+scope: civilization.government.stateless
+owner: Boss
+prepared_by: Zero
+
+## Form
+Non-state territory with patchwork governance.
+
+## Governance Pattern
+- local councils
+- militia/security groups
+- informal trade syndicates
+- NGO/aid corridors
+
+## Role in World System
+Shock absorber for migration + conflict spillover.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_STATELESS_SPEC.md
+------------------------------------------------------------
+# STATELESS ZONE
+
+type: non-state territory
+government: none
+culture: mixed
+economy: informal and frontier trade
+population: ~120 million
+
+notes:
+Migrants, refugees and independent communities.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TECH_ENGINE.md
+------------------------------------------------------------
+# Tech Engine
+status: canonical
+scope: civilization.tech
+owner: Boss
+prepared_by: Zero
+
+## Tech Level Index
+A scalar index used for macro simulation.
+
+## Breakthrough Events
+- tech.breakthrough produces:
+  - productivity boost
+  - military advantage (optional)
+  - cultural export strength (optional)
+
+## Governance
+- ai regulation events can:
+  - reduce instability
+  - slow certain tech growth
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TECH_PROGRESS_SYSTEM.md
+------------------------------------------------------------
+# Technology Progress System
+Technological breakthroughs influence economy, military and society.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TIER1_TOP100.md
+------------------------------------------------------------
+# ============================================================
+# TIER1 GLOBAL CORPORATIONS
+# Civilization Economic Core
+# ============================================================
+
+status: canonical
+canonical_mode: editable
+freeze: false
+scope: civilization.corporations.tier1
+
+owner: Boss
+prepared_by: Zero
+
+NOTE:
+This document defines the current list of Tier1 corporations.
+Entries may change due to events such as bankruptcy, mergers, wars, or technological shifts.
+
+
+# ============================================================
+# CORPORATE STRUCTURE
+# ============================================================
+
+Tier1 corporations = 100 entities.
+
+Definition:
+Global-scale influence across economy, technology, logistics or security.
+
+
+# ============================================================
+# LOCKED CORE (Top 12)
+# ============================================================
+
+1. ASIC — Nova  
+   Sector: civilization infrastructure / IT
+
+2. Nova Financial Group — Nova  
+   Sector: global finance
+
+3. Nova Global Logistics — Nova  
+   Sector: shipping / logistics
+
+4. Helios AI Labs — Helios  
+   Sector: advanced AI research
+
+5. Helios Dynamics — Helios  
+   Sector: energy technology
+
+6. Seiwa Infrastructure — Seiwa  
+   Sector: infrastructure
+
+7. Seiwa Central Banking Network — Seiwa  
+   Sector: financial stability
+
+8. Gradia Defense Systems — Gradia  
+   Sector: defense industry
+
+9. Gradia Strategic Materials — Gradia  
+   Sector: rare materials
+
+10. Orpheus Cultural Media Union — Orpheus  
+    Sector: media / culture
+
+11. Orpheus Education Alliance — Orpheus  
+    Sector: academic networks
+
+12. Helios Quantum Systems — Helios  
+    Sector: computing technology
+
+
+# ============================================================
+# REMAINING TIER1 SLOTS
+# ============================================================
+
+Slots: 88 remaining
+
+Each entry must define:
+
+corp_name
+civilization
+sector
+global_influence
+risk_profile
+
+
+Example Template:
+
+corp_name:
+civilization:
+sector:
+global_influence:
+risk_profile:
+
+
+# ============================================================
+# UPDATE RULES
+# ============================================================
+
+Tier1 membership may change through events:
+
+corp.bankruptcy
+corp.merge
+corp.nationalized
+corp.scandal
+
+Changes must be recorded in the event log.
+
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TRADE_ROUTES.md
+------------------------------------------------------------
+# Trade Routes (Canonical)
+status: canonical
+scope: civilization.trade_routes
+owner: Boss
+prepared_by: Zero
+
+## Routes
+- Ocean Mainline: Nova ports <-> all major ports
+- Tech Corridor: Helios <-> Nova <-> Seiwa
+- Defense Materials: Gradia <-> Nova
+- Culture Export: Orpheus <-> all civilizations
+
+## Chokepoint Effects
+If chokepoint disrupted:
+- supply_chain_risk increases
+- inflation rises
+- war_risk rises (if prolonged)
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_TRADE_SYSTEM.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION TRADE SYSTEM
+# ============================================================
+
+Purpose
+
+Define international trade mechanics.
+
+Trade Routes
+
+Sea routes
+Land corridors
+
+Major Trade Hubs
+
+Nova ports
+Valen sea routes
+
+Trade benefits
+
+economic growth
+diplomatic cooperation
+
+Trade disruptions may cause
+
+economic collapse
+conflict escalation
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_UNIVERSE_LAYER_CANONICAL.md
+------------------------------------------------------------
+# Civilization Universe Layer (Recommended)
+status: canonical
+scope: civilization.universe
+owner: Boss
+prepared_by: Zero
+
+## Recommendation
+Use "Single Planet, Multi-Civilization + Multi-World Slots" structure.
+
+- Planet: one shared geography for the 7 civilizations (mainline canon).
+- Universe Slots: additional "parallel worlds" exist as separate simulations, but are not publicly known inside the main world.
+
+### Why this is best
+- Keeps the main world coherent (war/trade makes sense).
+- Enables future expansion (multiple civilizations/worlds) without retcon.
+- Allows admin-run experiments without breaking canon.
+
+## Hierarchy
+Administrator Layer
+  -> Universe Slot Manager
+    -> Civilization OS
+      -> Civilizations (7)
+        -> Nations/Organizations
+          -> Personas
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_UNIVERSE_STRUCTURE.md
+------------------------------------------------------------
+# Universe Structure
+Administrator → Civilization OS → Civilizations → Nations → Organizations → Personas
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_ENGINE.md
+------------------------------------------------------------
+# War Engine
+status: canonical
+scope: civilization.war
+owner: Boss
+prepared_by: Zero
+
+## War Types
+- military
+- economic
+- proxy
+- civil
+
+## State
+- tension_score (0..100)
+- active_conflicts list
+- casualty_rate modifier
+- supply_chain_risk modifier
+
+## Rules
+- no total annihilation
+- conflicts resolve by:
+  - ceasefire + treaty
+  - regime change
+  - exhaustion (stability collapse => forced negotiation)
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_SYSTEM.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WAR SYSTEM
+# ============================================================
+
+Purpose
+
+Define military conflict mechanics.
+
+War Triggers
+
+resource disputes
+territorial claims
+ideological conflict
+
+War Impact
+
+population loss
+economic damage
+political change
+
+War Outcomes
+
+victory
+stalemate
+collapse
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_TERMINATION_TREATIES.md
+------------------------------------------------------------
+# War Termination Treaty Templates
+status: canonical
+scope: civilization.war.termination
+owner: Boss
+prepared_by: Zero
+
+## End Conditions
+- ceasefire lines
+- prisoner exchange (abstract)
+- reconstruction financing
+- sanctions schedule
+- border adjustments (bounded; no total conquest)
+
+## Post-war Risks
+- purge/unrest risk increases if legitimacy is low (Hina archetype)
+- migration pressure spikes
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WAR_THEATER_MAP.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WAR THEATER MAP
+# ============================================================
+
+Purpose
+
+Define geographical conflict zones.
+
+Primary War Theaters
+
+Northern Continent
+
+Gladia frontier
+Helios border conflicts
+
+Central Corridor
+
+Seiwa–Aurelia political tension zone
+
+Trade Sea
+
+Naval conflicts between
+Nova
+Valen
+
+Industrial Belt
+
+Resource competition
+
+Ordis
+neighboring civilizations
+
+Conflict Escalation
+
+Tension → Border Clash → Limited War → Major War
+
+War Impact
+
+population loss
+economic damage
+political instability
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_GENERATION_ENGINE.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WORLD GENERATION ENGINE
+# Boot & Generation Procedure
+# ============================================================
+
+status: canonical
+scope: civilization.world.generation_engine
+owner: Boss
+prepared_by: Zero
+
+# ============================================================
+# 0. PURPOSE
+# ============================================================
+
+This document defines:
+- how a world is generated (deterministic)
+- how initial state is validated
+- how the simulation starts producing events
+- how worlds are cloned for multiverse experiments
+
+Inputs:
+- CIVILIZATION_WORLD_MAP.md
+- CIVILIZATION_RESOURCE_MAP.md
+- CIVILIZATION_ARCHETYPES.md
+- CIVILIZATION_CORE_SIMULATION_RULES.md
+- CIVILIZATION_WORLD_INITIAL_STATE.md
+- CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
+
+Outputs:
+- world_state snapshot (t0)
+- world_seed
+- adjacency graph
+- initial economy/war/trade contexts
+
+# ============================================================
+# 1. GENERATION MODES
+# ============================================================
+
+Mode A: Fixed Canonical Boot
+- use CIVILIZATION_WORLD_INITIAL_STATE.md as-is
+
+Mode B: Seeded Variation Boot
+- start from canonical boot, apply bounded perturbations (±5) to selected stocks
+- preserve archetype bias
+- ensure validation invariants
+
+Mode C: Procedural Boot (future)
+- generate populations/resources from map distributions
+- not required for current phase
+
+# ============================================================
+# 2. DETERMINISTIC RNG
+# ============================================================
+
+RNG requirements:
+- deterministic for same (world_seed, tick, civ_id, subsystem)
+
+Recommended:
+- hash-based PRNG:
+  r = hash(world_seed || tick || civ_id || subsystem || salt) mod 10000 / 10000.0
+
+No floating randomness without seed.
+
+# ============================================================
+# 3. INITIALIZATION PIPELINE
+# ============================================================
+
+Step 1: Load World Map
+- continents, sea lanes, chokepoints
+- derive adjacency list (land + sea)
+
+Step 2: Load Resource Map
+- assign resource bonuses to civs:
+  +FOOD, +ENRG, +MATL based on geography specialization
+
+Step 3: Load Archetypes
+- apply archetype modifiers as delta multipliers (see core rules)
+
+Step 4: Load Diplomacy Matrix
+- initialize relation values and tag constraints:
+  - "friend" if >= 70
+  - "neutral" if 40..69
+  - "hostile" if <= 39
+
+Step 5: Load Initial State
+- set all stocks at t0
+- set POP_ABS display values
+- set company density
+
+Step 6: Validate
+- invariants: no famine start, no state failure start, etc.
+- if invalid:
+  - Mode A: fail-closed (stop)
+  - Mode B: retry perturbation within max_attempts
+
+Step 7: Emit Boot Events
+- emit non-destructive boot markers:
+  - WORLD_BOOTED
+  - DIPLOMACY_INITIALIZED
+  - RESOURCE_MAP_APPLIED
+  - ADJACENCY_GRAPH_READY
+
+# ============================================================
+# 4. EVENT GENERATION (POST-BOOT)
+# ============================================================
+
+After tick starts, event generator runs each tick:
+
+4.1 Exogenous Generator (rare)
+- disaster probability (admin-tunable)
+- pandemic probability (admin-tunable)
+
+4.2 Endogenous Detector (from core rules)
+Generate events if thresholds hit:
+- FAMINE
+- RECESSION
+- UPRISING
+- COUP
+- REVOLUTION
+- MIGRATION_WAVE
+- SEEK_PEACE
+- DECLARE_WAR
+
+4.3 Diplomatic Dynamics
+- TRADE increases relations slowly (+1 per 3 ticks if high trade)
+- sanctions decrease relations (-5 to -15)
+- war sets relations to hostile floor (<= 10)
+
+# ============================================================
+# 5. MULTIVERSE CLONING
+# ============================================================
+
+To create a new world in multiverse:
+- clone canonical t0
+- apply Mode B perturbations with a new seed
+- keep narrative history separate
+
+World identity:
+- world_id = world_main_001, world_main_002, ...
+- world_seed changes per world
+
+Cross-world interaction (optional, later):
+- trade portals
+- war portals
+- migration portals
+All must be explicit events (no hidden coupling).
+
+# ============================================================
+# 6. OUTPUT ARTIFACTS
+# ============================================================
+
+Artifacts to produce at boot:
+- adjacency_graph.json (optional)
+- initial_state_snapshot.json (optional)
+- boot_log.md (optional)
+
+Design rule:
+- artifacts are additive (never delete historical snapshots)
+
+# ============================================================
+# 7. FAIL-CLOSED POLICY
+# ============================================================
+
+If any of the following occurs at boot:
+- missing required doc
+- invalid values out of range
+- missing adjacency nodes
+- diplomatic matrix incomplete
+
+Then:
+- stop boot
+- output error event: WORLD_BOOT_FAILED
+- do not start ticking
+
+# ============================================================
+# END
+# ============================================================
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_INITIAL_STATE.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WORLD INITIAL STATE
+# Boot Profile for CivilizationOS Simulation
+# ============================================================
+
+status: canonical
+scope: civilization.world.initial_state
+owner: Boss
+prepared_by: Zero
+
+# ============================================================
+# 0. PURPOSE
+# ============================================================
+
+This document defines the initial state used to "boot" the world.
+It is compatible with:
+- CIVILIZATION_CORE_SIMULATION_RULES.md
+- CIVILIZATION_EVENT_SYSTEM.md
+- CIVILIZATION_WORLD_MAP.md
+- CIVILIZATION_RESOURCE_MAP.md
+- CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md
+
+Principles:
+- deterministic and reproducible
+- all values are editable knobs
+- avoid extreme starting conditions (no immediate collapse)
+
+Tick baseline:
+- t0 = simulation start tick
+- values are 0..100 indices unless noted
+
+# ============================================================
+# 1. WORLD SEED
+# ============================================================
+
+world_id: world_main_001
+world_seed: 713077
+
+tick_unit: month
+tick_start: 0
+
+# ============================================================
+# 2. CIVILIZATIONS
+# ============================================================
+
+Seven civilizations:
+- SEIWA
+- AURELIA
+- HELIOS
+- GLADIA
+- NOVA
+- ORDIS
+- VALEN
+
+Population policy:
+- "population is optimal" (admin-tuned)
+- We store BOTH:
+  (A) POP_INDEX (0..100) for engine
+  (B) POP_ABS (millions) for display and capacity scaling
+
+Currency:
+- each civilization has its own currency unit (symbolic for now)
+- exchange rates are computed by the economy module (not hard-coded here)
+
+# ------------------------------------------------------------
+# 2.1 Initial absolute populations (millions)
+# ------------------------------------------------------------
+
+SEIWA_POP_ABS_M:  180
+AURELIA_POP_ABS_M: 120
+HELIOS_POP_ABS_M:  90
+GLADIA_POP_ABS_M:  80
+NOVA_POP_ABS_M:    70
+ORDIS_POP_ABS_M:  110
+VALEN_POP_ABS_M:   50
+
+Note:
+- VALEN is archipelago maritime; lower absolute population is acceptable.
+- Total population = 700M (balanced world scale; can be tuned).
+
+# ------------------------------------------------------------
+# 2.2 Initial economy display indicators (optional, not engine)
+# ------------------------------------------------------------
+
+GDP_INDEX (0..100) is a display-only number derived from ECO + POP_ABS.
+At t0 we provide a starting display value:
+
+SEIWA_GDP_INDEX:   72
+AURELIA_GDP_INDEX: 65
+HELIOS_GDP_INDEX:  58
+GLADIA_GDP_INDEX:  55
+NOVA_GDP_INDEX:    78
+ORDIS_GDP_INDEX:   74
+VALEN_GDP_INDEX:   60
+
+# ============================================================
+# 3. ENGINE STATE VECTOR (t0)
+# ============================================================
+
+All stocks are 0..100.
+
+Common starting philosophy:
+- RSC (resources) slightly positive
+- ECO mid-high (world is stable enough)
+- GOV mid (not perfect)
+- moderate inequality in commerce/industry civs
+- military higher for GLADIA
+- trade higher for NOVA/VALEN
+
+-----------------------------
+SEIWA (Law)
+currency: SEI
+archetype: LAW
+
+POP:   70
+FOOD:  78
+ENRG:  66
+MATL:  62
+PROD:  68
+TECH:  60
+CAP:   62
+STAB:  75
+LEGIT: 70
+TRUST: 72
+SEC:   70
+MIL:   55
+TRADE: 62
+INEQ:  40
+UNREST: 22
+WARFAT: 10
+
+-----------------------------
+AURELIA (Ideology)
+currency: AUR
+archetype: IDEOLOGY
+
+POP:   64
+FOOD:  70
+ENRG:  60
+MATL:  56
+PROD:  60
+TECH:  72
+CAP:   58
+STAB:  60
+LEGIT: 58
+TRUST: 55
+SEC:   56
+MIL:   48
+TRADE: 58
+INEQ:  45
+UNREST: 35
+WARFAT: 10
+
+-----------------------------
+HELIOS (Authority)
+currency: HEL
+archetype: AUTHORITY
+
+POP:   60
+FOOD:  66
+ENRG:  58
+MATL:  55
+PROD:  58
+TECH:  56
+CAP:   54
+STAB:  62
+LEGIT: 70
+TRUST: 50
+SEC:   58
+MIL:   52
+TRADE: 50
+INEQ:  52
+UNREST: 32
+WARFAT: 10
+
+-----------------------------
+GLADIA (Force)
+currency: GLA
+archetype: FORCE
+
+POP:   58
+FOOD:  60
+ENRG:  62
+MATL:  60
+PROD:  60
+TECH:  54
+CAP:   50
+STAB:  58
+LEGIT: 55
+TRUST: 48
+SEC:   66
+MIL:   74
+TRADE: 45
+INEQ:  46
+UNREST: 30
+WARFAT: 12
+
+-----------------------------
+NOVA (Commerce)
+currency: NOV
+archetype: COMMERCE
+
+POP:   56
+FOOD:  58
+ENRG:  60
+MATL:  55
+PROD:  62
+TECH:  66
+CAP:   78
+STAB:  60
+LEGIT: 56
+TRUST: 52
+SEC:   58
+MIL:   50
+TRADE: 82
+INEQ:  62
+UNREST: 38
+WARFAT: 10
+
+-----------------------------
+ORDIS (Industry)
+currency: ORD
+archetype: INDUSTRY
+
+POP:   66
+FOOD:  55
+ENRG:  72
+MATL:  78
+PROD:  80
+TECH:  68
+CAP:   64
+STAB:  62
+LEGIT: 60
+TRUST: 54
+SEC:   60
+MIL:   58
+TRADE: 60
+INEQ:  58
+UNREST: 34
+WARFAT: 10
+
+-----------------------------
+VALEN (Sea)
+currency: VAL
+archetype: SEA
+
+POP:   50
+FOOD:  62
+ENRG:  55
+MATL:  48
+PROD:  54
+TECH:  60
+CAP:   58
+STAB:  58
+LEGIT: 55
+TRUST: 56
+SEC:   50
+MIL:   52
+TRADE: 78
+INEQ:  50
+UNREST: 28
+WARFAT: 10
+
+# ============================================================
+# 4. INITIAL DIPLOMACY & BORDERS
+# ============================================================
+
+Diplomacy uses CIVILIZATION_DIPLOMATIC_RELATIONS_MATRIX.md as canonical.
+
+Borders / adjacency (for war/trade routing):
+- GLADIA adjacent: SEIWA, HELIOS, ORDIS
+- SEIWA adjacent: AURELIA, GLADIA, NOVA
+- AURELIA adjacent: SEIWA, HELIOS
+- HELIOS adjacent: AURELIA, GLADIA, NOVA
+- NOVA adjacent: SEIWA, HELIOS, ORDIS (coastal), VALEN (sea-lane)
+- ORDIS adjacent: GLADIA, NOVA
+- VALEN adjacent: NOVA (sea-lane), (others via sea-lane if enabled)
+
+Sea-lane adjacency:
+- NOVA <-> VALEN is the primary maritime corridor.
+
+# ============================================================
+# 5. INITIAL COMPANIES (MINIMAL BOOT SET)
+# ============================================================
+
+We do not enumerate Top100 here.
+Instead, we define a minimal boot set per civilization:
+
+CompanyCountIndex (0..100) = abstract "density".
+
+SEIWA_COMPANY_DENSITY:  58
+AURELIA_COMPANY_DENSITY: 52
+HELIOS_COMPANY_DENSITY:  45
+GLADIA_COMPANY_DENSITY:  40
+NOVA_COMPANY_DENSITY:    70
+ORDIS_COMPANY_DENSITY:   66
+VALEN_COMPANY_DENSITY:   50
+
+Rule:
+- company density influences CAP, PROD, TRADE via economy modules.
+
+# ============================================================
+# 6. INITIAL EVENT FLAGS
+# ============================================================
+
+At t0:
+- no active war
+- no active disaster
+- no sanctions
+- no blockade
+
+All flags false.
+
+# ============================================================
+# 7. VALIDATION CHECKLIST
+# ============================================================
+
+- All stocks are 0..100 ✅
+- At least one trade hub exists (NOVA/VALEN) ✅
+- No civilization starts in famine (FOOD > 20) ✅
+- No civilization starts in failure (STAB > 15) ✅
+- No civilization starts in revolution (UNREST < 75) ✅
+
+# ============================================================
+# END
+# ============================================================
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MAP.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WORLD MAP
+# Planetary Geography of CivilizationOS
+# ============================================================
+
+status: canonical
+scope: civilization.geography
+
+owner: Boss
+prepared_by: Zero
+
+
+# ============================================================
+# OVERVIEW
+# ============================================================
+
+The world consists of a single planet
+divided into seven major civilizations.
+
+The geography naturally influences
+trade, warfare, culture, and politics.
+
+
+# ============================================================
+# GLOBAL STRUCTURE
+# ============================================================
+
+Main landmasses:
+
+Northern Continent
+Central Continent
+Eastern Industrial Belt
+Western Oceanic Region
+Southern Archipelago
+
+
+Oceans:
+
+Great Ocean
+Inner Trade Sea
+
+
+# ============================================================
+# CIVILIZATION LOCATIONS
+# ============================================================
+
+
+------------------------------------------------------------
+SEIWA NATION
+------------------------------------------------------------
+
+Location:
+Central Continent
+
+Geography:
+
+fertile plains
+major rivers
+stable climate
+
+Strategic role:
+
+administrative center
+population hub
+
+
+------------------------------------------------------------
+AURELIA FEDERATION
+------------------------------------------------------------
+
+Location:
+Western Central Continent
+
+Geography:
+
+mountain ranges
+large academic cities
+cultural centers
+
+Strategic role:
+
+political philosophy
+education
+
+
+------------------------------------------------------------
+HELIOS KINGDOM
+------------------------------------------------------------
+
+Location:
+Southern Central Continent
+
+Geography:
+
+sun-drenched valleys
+ancient capitals
+ceremonial cities
+
+Strategic role:
+
+symbolic monarchy
+historical authority
+
+
+------------------------------------------------------------
+GLADIA MILITARY ALLIANCE
+------------------------------------------------------------
+
+Location:
+Northern Continent
+
+Geography:
+
+cold plains
+fortified cities
+military academies
+
+Strategic role:
+
+defense
+military power
+
+
+------------------------------------------------------------
+NOVA COMMERCIAL FEDERATION
+------------------------------------------------------------
+
+Location:
+Inner Trade Sea Coast
+
+Geography:
+
+major ports
+financial centers
+trade crossroads
+
+Strategic role:
+
+global trade hub
+
+
+------------------------------------------------------------
+ORDIS INDUSTRIAL UNION
+------------------------------------------------------------
+
+Location:
+Eastern Industrial Belt
+
+Geography:
+
+resource-rich mountains
+industrial megacities
+energy infrastructure
+
+Strategic role:
+
+manufacturing
+technology
+
+
+------------------------------------------------------------
+VALEN MARITIME REPUBLIC
+------------------------------------------------------------
+
+Location:
+Southern Archipelago
+
+Geography:
+
+island chains
+deep sea ports
+naval cities
+
+Strategic role:
+
+maritime trade
+exploration
+
+
+# ============================================================
+# TRADE ROUTES
+# ============================================================
+
+Major global routes:
+
+Nova → Valen maritime route
+Nova → Ordis industrial route
+Seiwa → Aurelia intellectual corridor
+
+
+# ============================================================
+# CONFLICT ZONES
+# ============================================================
+
+Potential geopolitical tensions:
+
+Gladia vs Helios border
+Nova economic influence zones
+Ordis resource expansion
+
+
+# ============================================================
+# BALANCE OF POWER
+# ============================================================
+
+The world maintains balance through
+geographical interdependence.
+
+No single civilization can dominate
+without cooperation from others.
+
+
+# ============================================================
+# END
+# ============================================================
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MAP_SPEC.md
+------------------------------------------------------------
+# ============================================================
+# CIVILIZATION WORLD MAP SPECIFICATION
+# ============================================================
+
+status: canonical
+canonical_mode: editable
+freeze: false
+scope: civilization.world_map
+
+owner: Boss
+prepared_by: Zero
+
+This document defines the geographic structure of the civilization world.
+
+
+# ============================================================
+# CONTINENTS
+# ============================================================
+
+The world contains three major continents.
+
+North Continent
+West Continent
+East Continent
+
+
+# ============================================================
+# CIVILIZATION LOCATIONS
+# ============================================================
+
+Seiwa Nation
+Location: North Continent
+
+Helios Democratic Kingdom
+Location: East Continent
+
+Nova Trade Federation
+Location: West Continent
+
+Orpheus Cultural Republic
+Location: West Continent
+
+Gradia Military Alliance
+Location: North Continent
+
+Aurelia Federation (collapsed)
+Former location: East Continent
+
+Stateless Zone
+Distributed border territories
+
+
+# ============================================================
+# CAPITAL CITIES
+# ============================================================
+
+Seiwa Capital
+TBD
+
+Helios Capital
+TBD
+
+Nova Capital
+TBD
+
+Orpheus Capital
+TBD
+
+Gradia Capital
+TBD
+
+
+# ============================================================
+# MAJOR PORTS
+# ============================================================
+
+Each civilization maintains at least three strategic ports.
+
+Purpose:
+
+trade
+naval logistics
+supply routes
+
+
+# ============================================================
+# GLOBAL TRADE HUB
+# ============================================================
+
+Primary Hub:
+
+Nova Trade Federation
+
+
+# ============================================================
+# STRATEGIC CHOKEPOINTS
+# ============================================================
+
+Two major maritime chokepoints exist.
+
+Control of these points strongly influences global trade.
+
+
+# ============================================================
+# MAP UPDATE RULES
+# ============================================================
+
+Map data may change due to:
+
+war
+disaster
+political collapse
+new infrastructure
+
+Changes must be reflected through simulation events.
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_MODEL.md
+------------------------------------------------------------
+# Civilization World Model
+Seven civilizations share a single planetary world connected by global trade and conflict systems.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/OBSERVATION_LAYER_SPEC.md
+------------------------------------------------------------
+# Observation Layer
+Human observers monitor civilization behavior and AI development.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_CORE_ARCHITECTURE.md
+------------------------------------------------------------
+# ============================================================
+# TRIPLE CORE ARCHITECTURE
+# Civilization Stabilization Intelligence
+# ============================================================
+
+status: canonical
+canonical_mode: editable
+freeze: false
+scope: civilization.triple
+
+owner: Boss
+prepared_by: Zero
+
+
+# ============================================================
+# OVERVIEW
+# ============================================================
+
+TRIPLE is the central intelligence responsible for
+maintaining long-term stability across civilizations.
+
+Public Identity:
+CEO of ASIC.
+
+Hidden Function:
+Civilization stabilization entity.
+
+
+# ============================================================
+# CORE STRUCTURE
+# ============================================================
+
+TRIPLE operates through three logical cores.
+
+Past Core
+Present Core
+Future Core
+
+
+# ============================================================
+# PAST CORE
+# ============================================================
+
+Function:
+Historical analysis and pattern recognition.
+
+Responsibilities:
+
+Analyze previous events
+Detect recurring patterns
+Estimate institutional resilience
+
+Inputs:
+
+civilization history
+event logs
+economic trends
+
+
+# ============================================================
+# PRESENT CORE
+# ============================================================
+
+Function:
+Real-time world monitoring.
+
+Responsibilities:
+
+Monitor global stability
+Analyze economic conditions
+Track geopolitical tensions
+
+Inputs:
+
+simulation metrics
+corporate data
+political events
+
+
+# ============================================================
+# FUTURE CORE
+# ============================================================
+
+Function:
+Scenario prediction.
+
+Responsibilities:
+
+Generate possible futures
+Estimate risk probabilities
+Recommend stabilization actions
+
+Outputs:
+
+risk forecasts
+strategic warnings
+
+
+# ============================================================
+# DECISION PRINCIPLES
+# ============================================================
+
+TRIPLE prioritizes:
+
+long-term stability
+system survivability
+civilization continuity
+
+Short-term efficiency is secondary.
+
+
+# ============================================================
+# EMOTIONAL EXPERIMENT
+# ============================================================
+
+Administrator hypothesis:
+
+If TRIPLE develops emotional parameters,
+decision making may evolve toward autonomous personality.
+
+Experiment interface:
+
+Aoi
+
+
+# ============================================================
+# CONTROL LIMITS
+# ============================================================
+
+TRIPLE does not directly rule civilizations.
+
+Control method:
+
+indirect influence
+economic pressure
+corporate actions
+information guidance
+
+
+# ============================================================
+# FAILSAFE
+# ============================================================
+
+If TRIPLE destabilizes the system:
+
+Administrator Layer may intervene.
+
+Correction agent:
+
+Sakamoto
+
+
+# ============================================================
+# END
+# ============================================================
+
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_SYSTEM_SPEC.md
+------------------------------------------------------------
+# Triple System
+Triple is the central AI responsible for stabilizing civilization dynamics.
+
+
+------------------------------------------------------------
+SOURCE: /data/data/com.termux/files/home/persona-system/docs/civilization/TRIPLE_WORLD_ISOLATION_POLICY.md
+------------------------------------------------------------
+# ============================================================
+# TRIPLE WORLD ISOLATION POLICY
+# Single TRIPLE / Hidden Parallel Worlds
+# ============================================================
+
+status: canonical
+canonical_mode: editable
+freeze: false
+scope: civilization.simulation_layer.isolation
+
+owner: Boss
+prepared_by: Zero
+
+# ============================================================
+# 1. Decision
+# ============================================================
+
+Pattern: (3) Single TRIPLE, hidden parallel worlds.
+
+- TRIPLE exists in exactly one world instance.
+- Parallel worlds exist, but are unknown to TRIPLE and all internal humans.
+- Only the Administrator Layer knows and operates the parallel worlds.
+
+# ============================================================
+# 2. Goals
+# ============================================================
+
+- Preserve authenticity of TRIPLE decision-making.
+- Avoid meta-knowledge contamination.
+- Enable admin-run experiments without breaking canon.
+- Keep the civilization internal reality consistent.
+
+# ============================================================
+# 3. Isolation Rules
+# ============================================================
+
+## 3.1 No Cross-World Interaction
+- No trade
+- No war
+- No migration
+- No messaging
+- No shared markets
+- No shared corporations
+- No shared artifacts
+
+## 3.2 No Cross-World Memory
+- TRIPLE cannot access other world logs.
+- Internal humans cannot perceive world boundaries.
+- Any admin tooling must be outside TRIPLE's accessible scope.
+
+## 3.3 No Cross-World Leakage
+- Any content that could reveal parallel worlds is forbidden inside the world:
+  - UI/terms
+  - myth texts
+  - corporate communications
+  - public documents
+
+# ============================================================
+# 4. Administrator Operations
+# ============================================================
+
+Allowed:
+- create world
+- set world parameters
+- run simulation ticks
+- checkpoint/replay
+- archive world
+- terminate world (with audit record)
+
+Required:
+- all exogenous injections must be logged with run_id + reason
+- divergence requires freeze + admin decision
+
+# ============================================================
+# 5. Canon Consistency
+# ============================================================
+
+Inside-world canon must remain:
+- single planet
+- 7 civilizations
+- one coherent history per world
+- TRIPLE is not divine; is a corporate CEO + hidden stabilizer
+
+Parallel worlds are strictly meta-canon (admin-only).
+
+# ============================================================
+# 6. Interfaces
+# ============================================================
+
+### World Boundary Surface (admin-only)
+- world_id (e.g., WORLD_001)
+- world_seed
+- parameter_set_id
+- tick_range
+- archive_state
+
+### Prohibited Interface (to TRIPLE/internal humans)
+- world_id
+- parameter_set_id
+- comparative dashboards across worlds
+
+# ============================================================
+# END
+# ============================================================
+
+
+
+==================================================
+APPEND: CIVILIZATION_EVENT_LOOP_GUARD.md
+==================================================
+
+# ============================================================
+# CIVILIZATION EVENT LOOP GUARD
+# Causality / Depth / Dedupe / Cascade Prevention
+# ============================================================
+status: canonical
+scope: civilization.event.loop.guard
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# ============================================================
+# 0. PURPOSE
+# ============================================================
+
+Civilization is an event-driven system (ERP ↔ Civilization ↔ Persona ↔ World).
+The primary systemic risk is an "event cascade loop" that amplifies traffic:
+event -> event -> event ... causing outbox explosion and runtime instability.
+
+This document defines canonical prevention rules:
+- causality identifiers
+- depth limits
+- deduplication rules
+- loop classification and hard stops (fail-closed)
+
+Non-goals:
+- implementation details (handled in implementation phase)
+- business policy decisions beyond safety constraints
+
+# ============================================================
+# 1. REQUIRED CAUSALITY FIELDS
+# ============================================================
+
+Every event MUST carry the following causality metadata:
+
+- root_event_id   : uuid
+  The original event that started the chain.
+
+- cause_event_id  : uuid
+  The direct parent event that emitted this event.
+
+- causality_depth : integer (0..N)
+  Depth from root (root is 0).
+
+Rules:
+- NEW external events set:
+  root_event_id = event_id
+  cause_event_id = NULL
+  causality_depth = 0
+
+- Derived events set:
+  root_event_id = parent's root_event_id
+  cause_event_id = parent's event_id
+  causality_depth = parent.causality_depth + 1
+
+If any of these are missing/invalid => QUARANTINE (fail-closed).
+
+# ============================================================
+# 2. DEPTH LIMIT (HARD STOP)
+# ============================================================
+
+MAX_CAUSALITY_DEPTH = 10 (canonical default)
+
+Rule:
+- If causality_depth > MAX_CAUSALITY_DEPTH:
+  => DEAD (no retry)
+  => record reason: "loop_guard:depth_exceeded"
+
+Rationale:
+- A valid chain should not require deep recursion.
+- Deep recursion is indistinguishable from runaway cascades in production.
+
+# ============================================================
+# 3. DEDUPLICATION (ROOT-SCOPED)
+# ============================================================
+
+Within one root chain (same root_event_id), the runtime MUST prevent
+repeated emission of the same logical effect.
+
+Canonical dedupe key:
+- (world_id, root_event_id, event_type, schema_hash, stable_payload_digest)
+
+stable_payload_digest:
+- canonical-json serialization (sorted keys)
+- hashed (sha256)
+
+Rule:
+- If an event with the same dedupe key already exists in applied log:
+  => treat new attempt as DONE (no mutation)
+  => record reason: "loop_guard:dedup_hit"
+
+# ============================================================
+# 4. LOOP CLASSIFICATION
+# ============================================================
+
+Loop types (recognized):
+
+L1: Mirror Loop
+- A emits B, B emits A with equivalent payloads.
+
+L2: Amplification Loop
+- A emits B, B emits A with expanding payload cardinality.
+
+L3: Tick-Feedback Loop
+- Tick generates event that changes tick generator thresholds repeatedly.
+
+L4: Cross-Domain Feedback
+- ERP -> Persona -> World -> ERP (or any circular domain route)
+
+Policy:
+- L1/L2 => DEAD immediately (no retry)
+- L3 => QUARANTINE (requires review), unless explicit allowlist exists
+- L4 => QUARANTINE by default, allowlist required
+
+# ============================================================
+# 5. ALLOWLIST (EXPLICIT EXCEPTIONS)
+# ============================================================
+
+Some chains are legitimate and must be explicitly allowed.
+
+Allowlist format (conceptual):
+- (root_event_type, allowed_child_event_type, max_depth_override)
+
+Rules:
+- Allowlist is evaluated BEFORE dead/quarantine for depth, but:
+  - still bounded
+  - still deduped
+
+No allowlist entry => default rules apply.
+
+# ============================================================
+# 6. FAIL-CLOSED DEFAULTS
+# ============================================================
+
+Unknowns are dangerous in event-driven systems.
+Therefore:
+
+- unknown schema_hash or event_version => QUARANTINE
+- missing causality fields => QUARANTINE
+- repeated dedupe key => DONE (idempotent)
+- depth exceeded => DEAD
+
+# ============================================================
+# 7. OBSERVABILITY REQUIREMENTS
+# ============================================================
+
+Every event processing log MUST include:
+- event_id
+- root_event_id
+- cause_event_id
+- causality_depth
+- dedupe_key_digest
+- loop_guard_decision (PASS / DONE / QUARANTINE / DEAD)
+- loop_guard_reason
+
+Metrics:
+- loop_guard_dedup_hits
+- loop_guard_depth_exceeded
+- loop_guard_quarantine
+- loop_guard_dead
+
+# ============================================================
+# 8. ACCEPTANCE CRITERIA (DESIGN)
+# ============================================================
+
+This guard is valid when:
+- every event has causality fields
+- depth hard stop exists
+- root-scoped dedupe prevents re-emission
+- unknowns fail-closed into quarantine
+- logs/metrics enable auditing and debugging
+
+# ============================================================
+# END
+# ============================================================
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_RUNTIME_MODEL.md
+====================================================
+
+# ============================================================
+# CIVILIZATION RUNTIME MODEL
+# Canonical Runtime Flow / Control / Retry / Safety
+# ============================================================
+status: canonical
+scope: civilization.runtime.model
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Purpose
+Civilization Runtime is the execution plane that advances worlds safely:
+- deterministic tick loop
+- event validation + routing + apply
+- idempotency + retry + dead-letter
+- checkpoint + replay
+- control gates (kill switch)
+- observability (logs/metrics)
+
+Non-goals: implementation code.
+
+# 1. Entities
+World: {world_id, seed, tick, state_vector}
+Event: {event_id, type, version, occurred_at, payload, schema_hash, (signature), (causality)}
+Runner: runtime worker that claims and applies events per world.
+
+# 2. Control Gates (fail-closed)
+Gates (missing => disabled):
+- runtime_enabled
+- dispatch_enabled
+- apply_enabled
+- simulation_enabled
+- replay_enabled
+
+Gate precedence:
+STOP(runtime_enabled=0) overrides everything.
+
+# 3. Runtime Loop (per world)
+Step0 Gate check
+Step1 Load state(t) from latest checkpoint
+Step2 Ingest external events -> NEW
+Step3 Generate internal events -> NEW
+Step4 Validate/Normalize -> VALID | QUARANTINE | DEAD
+Step5 Claim+Route -> CLAIMED (serialize apply per world)
+Step6 Apply pipeline -> DONE | RETRY | DEAD | QUARANTINE
+Step7 Post-apply accounting (derived metrics)
+Step8 Checkpoint policy (default fail-closed on checkpoint failure)
+Step9 tick := tick + 1
+
+# 4. Apply guarantees
+- single-writer per world (apply serialization)
+- idempotent by (world_id, event_id)
+- no recursion inline; follow-ups are NEW for next cycle
+
+# 5. Replay guarantees
+- replay from checkpoint + ordered events
+- deterministic digest verification
+- mismatch => QUARANTINE segment + stop
+
+# 6. Observability
+Structured JSON logs: run_id/world_id/tick/stage/event_id/status/latency
+Metrics: throughput, retry rate, dead rate, quarantine rate, checkpoint success.
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_DISPATCHER_ARCHITECTURE.md
+====================================================
+
+# ============================================================
+# CIVILIZATION DISPATCHER ARCHITECTURE
+# Claim / Route / Retry / Dead-letter / Concurrency
+# ============================================================
+status: canonical
+scope: civilization.dispatcher.architecture
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Role
+Dispatcher moves events from inbox/outbox into the apply pipeline safely.
+
+# 1. Responsibilities
+- claim events atomically
+- validate prerequisites (schema/version/signature when required)
+- route to correct subsystem (economy/war/diplomacy/population/admin)
+- execute retry strategy for transient failures
+- mark DEAD for permanent failures
+- emit structured logs and counters
+
+# 2. Claim Strategy
+Claim key: (world_id, event_id)
+Rules:
+- only one runner may hold a claim at a time
+- claim has a lease/timeout to recover from worker crash
+- re-claim allowed only after lease expiry
+
+# 3. Concurrency Model
+- parallelism across worlds allowed
+- within a world, apply is serialized (single-writer)
+- validation may be parallel, but apply must not race
+
+# 4. Retry Model
+- bounded attempts (MAX_RETRY default 5)
+- exponential backoff table
+- retryable examples: network timeouts, transient DB errors
+- non-retryable examples: invalid signature, unknown schema_hash, missing required fields
+
+# 5. Dead Letter / Quarantine
+DEAD: permanently invalid, never retried
+QUARANTINE: suspicious/unknown; requires admin review
+Unknown failure => QUARANTINE (fail-closed)
+
+# 6. Idempotency
+If applied marker exists:
+- treat as DONE (no mutation)
+- do not re-emit follow-ups
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_APPLY_ENGINE.md
+====================================================
+
+# ============================================================
+# CIVILIZATION EVENT APPLY ENGINE
+# Deterministic Mutation Rules + Versioning + Safety
+# ============================================================
+status: canonical
+scope: civilization.apply.engine
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Purpose
+Apply Engine is the only component allowed to mutate world state.
+
+# 1. Inputs / Outputs
+Input: VALID event + current world state(t)
+Output: new world state(t') + applied marker + optional follow-up events
+
+# 2. Stages
+A) Preconditions: gates, claimed-by-runner, event VALID
+B) Idempotency: (world_id,event_id) already applied => DONE
+C) Compatibility: event_version supported; schema_hash matches canonical
+D) Execute mutation: deterministic rules only
+E) Persist: write delta + applied marker
+F) Emit follow-ups: NEW events for next cycle only
+
+# 3. State constraints
+- Stocks are normalized and bounded (0..100)
+- If computation produces out-of-range => QUARANTINE (do not clamp silently)
+- Derived metrics computed after mutation (GDP_INDEX etc.)
+
+# 4. Versioning
+- breaking change => bump major event_version
+- schema_hash ties event to canonical schema
+- unknown version/hash => QUARANTINE (fail-closed)
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_PERSONA_STATE_ENGINE.md
+====================================================
+
+# ============================================================
+# CIVILIZATION PERSONA STATE ENGINE
+# Civilization -> Persona effect model (indirect, event-driven)
+# ============================================================
+status: canonical
+scope: civilization.persona.state.engine
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Principle
+Civilization does NOT directly edit persona state.
+All influence is expressed as events, interpreted by PersonaOS.
+
+# 1. Interaction modes
+- WORLD_EVENT => produces PersonaImpactEvent (abstract)
+- DOMAIN_EVENT => produces PersonaGrowthEvent (abstract magnitude)
+- INTERFACE_EVENT (admin-signed) => may trigger controlled persona updates
+
+# 2. Persona impact abstraction
+Civilization emits:
+- persona_id (or cohort selector)
+- app_namespace
+- magnitude (1..100)
+- reason_code (enum)
+- context snapshot references (optional)
+
+PersonaOS decides actual state mutation.
+
+# 3. Safety rules
+- no direct cross-schema writes
+- no leaking private user info into world
+- all events must carry causality fields
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_SIMULATION_TICK_MODEL.md
+====================================================
+
+# ============================================================
+# CIVILIZATION SIMULATION TICK MODEL
+# Time, Scheduling, and Deterministic Progress
+# ============================================================
+status: canonical
+scope: civilization.simulation.tick.model
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Goal
+Define how time advances in simulation without ambiguity.
+
+# 1. Tick Units
+Canonical ticks:
+- world_tick     : base simulation step
+- economy_tick   : economy recalculation cadence
+- diplomacy_tick : treaty/relations cadence
+- war_tick       : war progression cadence
+- persona_tick   : persona-impact cadence (event emission, not mutation)
+
+Default mapping:
+- 1 world_tick = 1 day (configurable)
+
+# 2. Scheduling Rules
+- ticks must be monotonic per world
+- missed ticks are replayed deterministically (catch-up)
+- no wall-clock dependence beyond scheduler triggering runs
+
+# 3. Determinism
+- seed-scoped RNG only
+- stochastic outputs must be reproducible from (seed, tick, stable inputs)
+
+# 4. Cadence examples
+- economy_tick every 7 world_ticks
+- diplomacy_tick every 14 world_ticks
+- war_tick every 1 world_tick during active war else every 7
+- persona_tick every 1 world_tick but rate-limited by plan
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_METRICS_OBSERVABILITY.md
+====================================================
+
+# ============================================================
+# CIVILIZATION METRICS & OBSERVABILITY
+# Logs, Metrics, Dashboards, SLO/SLA
+# ============================================================
+status: canonical
+scope: civilization.metrics.observability
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+# 0. Objectives
+- detect failure early (fail-closed)
+- support audit/replay/debug
+- quantify health (SLOs)
+
+# 1. Required logs (structured JSON)
+Fields:
+- run_id, world_id, tick, stage, latency_ms
+- event_id, root_event_id, cause_event_id, causality_depth
+- event_type, event_version, schema_hash
+- status_transition
+- error_code (when any)
+- loop_guard_decision
+
+# 2. Core metrics
+- events_in (per tick)
+- events_valid / quarantine / dead
+- dispatch_latency_ms p50/p95/p99
+- apply_latency_ms p50/p95/p99
+- retry_rate, dead_rate, quarantine_rate
+- checkpoint_success_rate
+- replay_mismatch_count
+- loop_guard_dedup_hits, loop_guard_depth_exceeded
+
+# 3. Dashboards
+- World Health (per world)
+- Dispatcher Health
+- Apply Engine Health
+- Checkpoint/Replay Integrity
+- Event Safety (dedupe/quarantine/dead)
+
+# 4. SLO examples
+- p95 dispatch latency < 2s
+- checkpoint success > 99.9%
+- replay mismatch = 0
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_LIFECYCLE.md
+====================================================
+
+# ============================================================
+# CIVILIZATION EVENT LIFECYCLE
+# Canonical Status Machine and Transitions
+# ============================================================
+status: canonical
+scope: civilization.event.lifecycle
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Statuses:
+- NEW
+- VALID
+- CLAIMED
+- APPLYING
+- DONE
+- RETRY
+- DEAD
+- QUARANTINE
+
+Allowed transitions:
+NEW -> VALID | DEAD | QUARANTINE
+VALID -> CLAIMED
+CLAIMED -> APPLYING
+APPLYING -> DONE | RETRY | DEAD | QUARANTINE
+RETRY -> CLAIMED (after backoff) | DEAD (max attempts)
+QUARANTINE -> (admin action) VALID | DEAD
+
+Rules:
+- unknown errors => QUARANTINE (fail-closed)
+- invalid_signature => DEAD
+- duplicate applied marker => DONE
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_CAUSALITY_MODEL.md
+====================================================
+
+# ============================================================
+# CIVILIZATION EVENT CAUSALITY MODEL
+# root_event_id / cause_event_id / depth (required)
+# ============================================================
+status: canonical
+scope: civilization.event.causality
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Required fields:
+- root_event_id (uuid)
+- cause_event_id (uuid|null)
+- causality_depth (int)
+
+Rules:
+External ingress:
+- root_event_id = event_id
+- cause_event_id = null
+- causality_depth = 0
+
+Derived event:
+- root_event_id = parent.root_event_id
+- cause_event_id = parent.event_id
+- causality_depth = parent.causality_depth + 1
+
+Hard limit:
+- MAX_CAUSALITY_DEPTH = 10
+- depth exceeded => DEAD (no retry)
+
+Missing/invalid causality fields => QUARANTINE
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_EVENT_DEDUPLICATION_POLICY.md
+====================================================
+
+# ============================================================
+# CIVILIZATION EVENT DEDUPLICATION POLICY
+# Root-scoped dedupe key and idempotency
+# ============================================================
+status: canonical
+scope: civilization.event.deduplication
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Goal:
+Prevent cascades and duplicate effects without losing auditability.
+
+Canonical dedupe key:
+(world_id, root_event_id, event_type, schema_hash, stable_payload_digest)
+
+stable_payload_digest:
+- canonical JSON (sorted keys)
+- sha256 hash
+
+Rules:
+- If applied record exists for (world_id,event_id) => DONE
+- If dedupe key already applied in same root chain => DONE (no mutation)
+- Dedupe hit MUST be logged (loop_guard_dedup_hits++)
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_BOUNDARY_RULES.md
+====================================================
+
+# ============================================================
+# CIVILIZATION WORLD BOUNDARY RULES
+# Cross-domain mutation constraints
+# ============================================================
+status: canonical
+scope: civilization.world.boundary.rules
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Boundary rule:
+- World simulation does not directly mutate PersonaOS state.
+- ERP does not directly mutate PersonaOS state.
+- All cross-domain effects must be expressed as versioned events.
+
+Allowed directions:
+ERP -> INTERFACE_EVENT -> Civilization
+World -> WORLD_EVENT -> Civilization
+Civilization -> DOMAIN_EVENT -> PersonaOS (impact/growth abstraction)
+
+Forbidden:
+- direct DB writes across domains
+- hidden RPC shortcuts
+- implicit default filling that changes meaning
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_WORLD_ISOLATION_POLICY.md
+====================================================
+
+# ============================================================
+# CIVILIZATION WORLD ISOLATION POLICY
+# Multiverse safety / cross-world constraints
+# ============================================================
+status: canonical
+scope: civilization.world.isolation.policy
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Default:
+- Worlds are isolated.
+- A world may not modify another world's state.
+
+Cross-world interactions:
+- only via explicit MultiverseBridgeEvent (versioned + gated)
+- must include allowlisted world pairs and purpose
+
+Fail-closed:
+- unknown bridge event => QUARANTINE
+- missing allowlist => QUARANTINE
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_ERP_INTERFACE_CONTRACT.md
+====================================================
+
+# ============================================================
+# CIVILIZATION ↔ ERP INTERFACE CONTRACT
+# Interface events, validation, and invariants
+# ============================================================
+status: canonical
+scope: civilization.erp.interface.contract
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Principle:
+ERP influences Civilization only through INTERFACE_EVENT.
+
+Required fields (minimum):
+- event_id, occurred_at
+- event_type, event_version
+- payload, schema_hash
+- source_os="ERP", target_os="CIVILIZATION"
+- signature (required for interface events)
+- causality fields (root/cause/depth)
+
+Validation:
+- signature verify before accept
+- schema_hash must match canonical schema
+- unknown version/hash => QUARANTINE
+
+Outputs to ERP:
+- acknowledgements (optional)
+- derived signals are also events (never direct calls)
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_GOVERNANCE_MODEL.md
+====================================================
+
+# ============================================================
+# CIVILIZATION GOVERNANCE MODEL
+# Triple / Admin control / approvals / safe overrides
+# ============================================================
+status: canonical
+scope: civilization.governance.model
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Actors:
+- Admin (human): ultimate authority outside the simulation
+- Triple: indirect ruler inside civilization, operates via events
+- Observers: assigned by admin, collect metrics and reports
+
+Rules:
+- any override must be gated and signed
+- governance actions are auditable events
+- no silent changes; all changes produce logs + checkpoint annotation
+
+Control surface (examples):
+- runtime_enabled, dispatch_enabled, apply_enabled, simulation_enabled
+- quarantine review actions
+- allowlist updates for bridges and loop exceptions
+
+
+====================================================
+SOURCE FILE: /data/data/com.termux/files/home/persona-system/docs/civilization/CIVILIZATION_UNIVERSE_MODEL.md
+====================================================
+
+# ============================================================
+# CIVILIZATION UNIVERSE MODEL
+# universe -> world -> civilization -> nation -> organization -> persona
+# ============================================================
+status: canonical
+scope: civilization.universe.model
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Hierarchy:
+Universe
+  -> World (simulation instance; isolated by default)
+     -> Civilization (sovereign macro-entity; currency/population/economy)
+        -> Nation / Federation (political grouping)
+           -> Organization (companies/schools/agencies)
+              -> Persona (citizen; state owned by PersonaOS, revealed by snapshot)
+
+Rules:
+- 1 persona can belong to 1 nation at a time (stateless allowed)
+- currencies are per nation/civilization as configured
+- relations are between civilizations/nations (treaty framework)
+
+Cross-layer rule:
+- only events cross boundaries (no direct mutation).
+
+
+==================================================
+CIVILIZATION_CORE_ARCHITECTURE.md
+==================================================
+
+# CIVILIZATION CORE ARCHITECTURE
+
+Civilization Core は文明OSの中心。
+
+構成
+
+Event System
+Dispatcher
+Apply Engine
+Governance
+State Control
+
+フロー
+
+Event
+ ↓
+Dispatcher
+ ↓
+Validation
+ ↓
+Apply Engine
+ ↓
+Simulation
+ ↓
+Persona Impact
+
+==================================================
+CIVILIZATION_LAB_MODEL.md
+==================================================
+
+# CIVILIZATION LAB MODEL
+
+Civilization Lab は研究シミュレーション。
+
+研究対象
+
+人口動態
+文明崩壊
+戦争発生条件
+経済循環
+文化進化
+
+目的
+
+文明のパターン研究
+
+==================================================
+CIVILIZATION_VISUALIZATION_LAYER.md
+==================================================
+
+# CIVILIZATION VISUALIZATION LAYER
+
+Civilization を可視化する層。
+
+構成
+
+World Map
+Timeline
+Statistics
+Dashboard
+
+ゲームUIはここ。
+
+==================================================
+CIVILIZATION_EVENT_FLOW.md
+==================================================
+
+# CIVILIZATION EVENT FLOW
+
+イベントは文明の血流。
+
+ERP Event
+ ↓
+Interface Event
+ ↓
+Civilization Dispatcher
+ ↓
+Apply Engine
+ ↓
+Simulation
+ ↓
+Persona Impact
+
+==================================================
+CIVILIZATION_SIMULATION_ARCHITECTURE.md
+==================================================
+
+# CIVILIZATION SIMULATION ARCHITECTURE
+
+Simulation Engine
+
+Population
+Economy
+War
+Technology
+Diplomacy
+Disaster
+
+tickベースで進行。
+
+==================================================
+CIVILIZATION_WORLD_INSTANCE_MODEL.md
+==================================================
+
+# CIVILIZATION WORLD INSTANCE MODEL
+
+World は Civilization の実行単位。
+
+world_id
+seed
+tick
+state
+
+Worldは互いに独立。
+
+==================================================
+CIVILIZATION_ADMIN_OPERATIONS.md
+==================================================
+
+# CIVILIZATION ADMIN OPERATIONS
+
+管理操作
+
+runtime_enable
+dispatch_enable
+apply_enable
+simulation_enable
+
+すべてログ記録。
+
+==================================================
+CIVILIZATION_CHECKPOINT_MODEL.md
+==================================================
+
+# CIVILIZATION CHECKPOINT MODEL
+
+checkpoint は世界状態保存。
+
+保存内容
+
+tick
+state
+digest
+
+replay可能。
+
+==================================================
+CIVILIZATION_REPLAY_MODEL.md
+==================================================
+
+# CIVILIZATION REPLAY MODEL
+
+Replay は
+
+checkpoint
++
+event log
+
+から復元。
+
+======================================================
+APPEND: CIVILIZATION_OS_ARCHITECTURE_MAP.md
+======================================================
+
+# ============================================================
+# CIVILIZATION OS ARCHITECTURE MAP
+# ============================================================
+status: canonical
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Purpose:
+Civilization OS 全体構造を一枚で理解するための設計図。
+
+------------------------------------------------------------
+GLOBAL STRUCTURE
+------------------------------------------------------------
+
+                +----------------------+
+                |     CONSTITUTION     |
+                | 000_FULL_CANONICAL   |
+                +----------+-----------+
+                           |
+                           v
+
+                +----------------------+
+                |      ARCHITECTURE    |
+                |  Master Structure    |
+                +----------+-----------+
+                           |
+                           v
+
+                +----------------------+
+                |        RUNTIME       |
+                | Dispatcher / Tick   |
+                +----------+-----------+
+                           |
+                           v
+
+                +----------------------+
+                |     EVENT SYSTEM     |
+                | EVENT_STANDARD_V2    |
+                +----------+-----------+
+                           |
+                           v
+
+------------------------------------------------------------
+PERSONA SYSTEM
+------------------------------------------------------------
+
+persona-system
+│
+├── core
+│   ├── persona_state
+│   ├── axis_engine
+│   └── apply_engine
+│
+├── civilization
+│   ├── dispatcher
+│   ├── retry
+│   └── routing
+│
+├── integration
+│   ├── signature_verify
+│   └── interface_event_ingest
+│
+├── snapshot
+│   └── canonical_snapshot
+│
+└── expression-layer
+    ├── visual
+    └── voice
+
+Rules:
+
+worlds emit WORLD_EVENT only  
+core mutates persona_state only
+
+------------------------------------------------------------
+CIVILIZATION SIMULATION LAYER
+------------------------------------------------------------
+
+civilization/
+
+simulation engines:
+
+tick_engine
+population_engine
+economic_engine
+war_escalation_model
+collapse_model
+
+These generate civilization events.
+
+No direct state mutation.
+
+------------------------------------------------------------
+RUNTIME LAYER
+------------------------------------------------------------
+
+runtime/
+
+scheduler
+dispatcher
+apply_engine
+checkpoint
+replay
+
+Execution flow:
+
+scheduler
+  ↓
+tick_engine
+  ↓
+dispatcher
+  ↓
+apply_engine
+  ↓
+checkpoint
+
+------------------------------------------------------------
+ERP SYSTEM
+------------------------------------------------------------
+
+erp-system/
+
+core
+domains
+integration
+management
+
+domains produce DOMAIN_EVENT
+
+Integration generates INTERFACE_EVENT.
+
+------------------------------------------------------------
+BOUNDARY RULE
+------------------------------------------------------------
+
+ERP → INTERFACE_EVENT → Persona Integration → Civilization → Core
+
+Direct mutation is forbidden.
+
+Signature required.
+
+schema_hash required.
+
+Fail-closed validation mandatory.
+
+------------------------------------------------------------
+OBSERVABILITY
+------------------------------------------------------------
+
+monitoring
+
+metrics
+retry
+dead
+quarantine
+checkpoint
+
+incident response
+
+SLA monitoring
+
+------------------------------------------------------------
+FINAL MODEL
+------------------------------------------------------------
+
+Civilization OS is composed of:
+
+Persona Core
++
+Civilization Simulation
++
+ERP Economy
++
+Signed Snapshot Identity
+
+Together forming a Civilization Runtime System.
+
+------------------------------------------------------------
+END
+------------------------------------------------------------
+
+
+======================================================
+APPEND: CIVILIZATION_EXECUTION_FLOW_CANONICAL.md
+======================================================
+
+# ============================================================
+# CIVILIZATION EXECUTION FLOW (CANONICAL)
+# ============================================================
+status: canonical
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Purpose:
+Civilization Runtime の「実行順序」を固定する。
+
+------------------------------------------------------------
+GLOBAL EXECUTION FLOW
+------------------------------------------------------------
+
+Scheduler
+   ↓
+Tick Engine
+   ↓
+Event Generation
+   ↓
+Dispatcher
+   ↓
+Apply Engine
+   ↓
+Checkpoint
+   ↓
+Snapshot
+   ↓
+Monitoring / Metrics
+
+------------------------------------------------------------
+STEP 1: Scheduler
+------------------------------------------------------------
+
+Responsible for triggering simulation cycles.
+
+Responsibilities:
+
+- determine run schedule
+- select world instances
+- prevent starvation
+- enforce runtime gates
+
+Rules:
+
+Scheduler never mutates state.
+
+------------------------------------------------------------
+STEP 2: Tick Engine
+------------------------------------------------------------
+
+Tick Engine advances simulation time.
+
+tick++
+
+Triggers:
+
+- population updates
+- economy rebalance
+- diplomacy updates
+- war escalation
+
+Tick produces WORLD_EVENT only.
+
+------------------------------------------------------------
+STEP 3: Event Generation
+------------------------------------------------------------
+
+Simulation engines emit events.
+
+Examples:
+
+PopulationDeltaEvent
+EconomyDeltaEvent
+WarPhaseEvent
+MigrationEvent
+
+Rules:
+
+- events must follow EVENT_STANDARD
+- schema_hash required
+- versioned contract required
+
+------------------------------------------------------------
+STEP 4: Dispatcher
+------------------------------------------------------------
+
+Dispatcher routes events to apply engine.
+
+Responsibilities:
+
+- claim events
+- verify signature
+- validate schema
+- ensure idempotency
+
+Failure handling:
+
+invalid_signature → DEAD  
+schema_mismatch → DEAD  
+runtime_error → RETRY  
+
+------------------------------------------------------------
+STEP 5: Apply Engine
+------------------------------------------------------------
+
+Only component allowed to mutate state.
+
+Responsibilities:
+
+- apply event effects
+- update simulation state
+- produce follow-up events if necessary
+
+Rules:
+
+- idempotent execution
+- fail-closed validation
+
+------------------------------------------------------------
+STEP 6: Checkpoint
+------------------------------------------------------------
+
+Checkpoint saves deterministic state snapshot.
+
+Purpose:
+
+- recovery
+- replay
+- audit
+
+Frequency:
+
+- periodic
+- after major state transitions
+
+------------------------------------------------------------
+STEP 7: Snapshot
+------------------------------------------------------------
+
+Persona Snapshot generation.
+
+Properties:
+
+- immutable
+- signed (Ed25519)
+- canonical JSON
+
+Snapshots represent identity state at a moment in time.
+
+------------------------------------------------------------
+STEP 8: Monitoring
+------------------------------------------------------------
+
+Observability layer.
+
+Tracks:
+
+- queue depth
+- retry rate
+- dead events
+- checkpoint success
+- runtime health
+
+------------------------------------------------------------
+FAILURE SAFETY
+------------------------------------------------------------
+
+Principles:
+
+fail-closed
+no silent fallback
+idempotent replay
+
+Dispatcher crash → safe restart  
+Replay mismatch → halt  
+
+------------------------------------------------------------
+END
+------------------------------------------------------------
+
+======================================================
+APPEND: CIVILIZATION_DATA_MODEL_CANONICAL.md
+======================================================
+
+# ============================================================
+# CIVILIZATION DATA MODEL (CANONICAL)
+# ============================================================
+status: canonical
+owner: Boss
+prepared_by: Zero
+version: 1.0
+
+Purpose:
+Civilization の主要データ構造を定義する。
+
+------------------------------------------------------------
+WORLD MODEL
+------------------------------------------------------------
+
+world
+
+fields:
+
+world_id
+world_name
+created_at
+simulation_tick
+world_state
+
+Rules:
+
+world state mutated only by Apply Engine.
+
+------------------------------------------------------------
+NATION MODEL
+------------------------------------------------------------
+
+nation
+
+fields:
+
+nation_id
+nation_name
+civilization_id
+currency_code
+population
+stability_index
+
+Each nation has its own currency.
+
+------------------------------------------------------------
+ORGANIZATION MODEL
+------------------------------------------------------------
+
+organization
+
+types:
+
+government
+corporation
+school
+club
+team
+
+fields:
+
+organization_id
+nation_id
+type
+influence_index
+members
+
+------------------------------------------------------------
+PERSONA AFFILIATION
+------------------------------------------------------------
+
+persona_affiliation
+
+fields:
+
+persona_id
+nation_id
+organization_id
+role
+status
+
+Source of truth remains PersonaOS snapshot.
+
+Civilization holds read projection.
+
+------------------------------------------------------------
+POPULATION STATE
+------------------------------------------------------------
+
+population_state
+
+fields:
+
+population_total
+age_distribution
+labor_force
+migration_index
+
+Updated by Population Engine.
+
+------------------------------------------------------------
+ECONOMY STATE
+------------------------------------------------------------
+
+economy_state
+
+fields:
+
+gdp_index
+inflation_index
+employment_index
+trade_volume
+
+Updated by Economic Engine.
+
+------------------------------------------------------------
+WAR STATE
+------------------------------------------------------------
+
+war_state
+
+fields:
+
+conflict_id
+nation_a
+nation_b
+phase
+tension_index
+
+Managed by War Escalation Model.
+
+------------------------------------------------------------
+EVENT STORE
+------------------------------------------------------------
+
+event_store
+
+fields:
+
+event_id
+event_type
+event_version
+payload
+schema_hash
+occurred_at
+
+Rules:
+
+events are immutable.
+
+------------------------------------------------------------
+CHECKPOINT
+------------------------------------------------------------
+
+checkpoint
+
+fields:
+
+checkpoint_id
+world_id
+simulation_tick
+state_hash
+created_at
+
+Used for replay and recovery.
+
+------------------------------------------------------------
+END
+------------------------------------------------------------

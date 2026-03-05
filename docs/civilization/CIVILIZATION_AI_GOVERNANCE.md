@@ -1,19 +1,24 @@
 # ============================================================
 # CIVILIZATION AI GOVERNANCE
 # ============================================================
+status: canonical
+scope: civilization.governance.ai
+owner: Boss
+prepared_by: Zero
+version: 1.0
 
-Purpose
+## 0. Purpose
+文明内AI/役割（Triple等）を「権限ではなくルール」で統制する設計。
 
-Define administrative AI oversight.
+## 1. Authority Model
+- ultimate authority: human administrator (outside)
+- in-civilization: Triple is indirect ruler (event-based)
+- observers execute observation tasks assigned by admin
 
-Actors
+## 2. Constraints
+- governance actions are events (signed)
+- no silent overrides
+- quarantine review requires admin decision
 
-Administrator
-Observers
-Correction Agents
-
-Role
-
-monitor civilization development
-apply minimal corrections
-prevent total collapse
+## 3. Audit
+- all governance events logged + checkpoint annotation
